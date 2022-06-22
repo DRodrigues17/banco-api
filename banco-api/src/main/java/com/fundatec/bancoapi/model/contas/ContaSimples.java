@@ -1,4 +1,4 @@
-package com.fundatec.bancoapi.model;
+package com.fundatec.bancoapi.model.contas;
 
 public class ContaSimples extends Conta{
 

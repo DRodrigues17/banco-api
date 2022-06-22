@@ -1,4 +1,6 @@
-package com.fundatec.bancoapi.model;
+package com.fundatec.bancoapi.model.pessoas;
+
+import com.fundatec.bancoapi.model.Endereco;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,22 +15,22 @@ public class Fornecedor {
     private String cnpj;
 
     @Column(name = "nome_fantasia")
-    private String nome_fantasia;
+    private String nomeFantasia;
 
     @OneToOne(orphanRemoval = false)
     @JoinColumn(name = "endereço_id")
     private Endereco endereco;
 
     @Column(name = "data_cadastro")
-    private Date data_cadastro;
+    private Date dataCadastro;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "telefone_id", referencedColumnName = "id")
-    private Integer telefone_id;
+    private Integer telefoneId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email_id", referencedColumnName = "id")
-    private Integer email_id;
+    private Integer emailId;
 
 
 }

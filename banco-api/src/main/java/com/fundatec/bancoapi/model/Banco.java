@@ -1,5 +1,7 @@
 package com.fundatec.bancoapi.model;
 
+import com.fundatec.bancoapi.model.contas.Conta;
+import com.fundatec.bancoapi.model.pessoas.Cliente;
 import lombok.Data;
 import lombok.Getter;
 
@@ -21,8 +23,8 @@ public class Banco {
 
     private String senha;
 
-    private List<Cliente> cliente_list;
+    private List<Cliente> clientes;
 
-    private List<Conta> conta_list;
+    private List<Conta> contas;
 
 }
