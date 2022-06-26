@@ -1,4 +1,4 @@
-package com.fundatec.bancoapi.model;
+package com.fundatec.bancoapi.model.contas;
 
 import lombok.Getter;
 import org.hibernate.mapping.List;
@@ -16,13 +16,16 @@ public abstract class Conta {
     private Integer id;
 
     @Column(name = "cpf_titular", nullable = false)
-    private String cpf_titular;
+    private String cpfTitular;
 
     @Column(name = "saldo")
     private BigDecimal saldo;
 
-    private String senha_acesso;
+    private String senhaAcesso;
 
-    private List movimentacao_list;
+    private List movimentacaoList;
 
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
+    }
 }

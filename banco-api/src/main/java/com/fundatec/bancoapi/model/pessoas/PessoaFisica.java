@@ -1,13 +1,13 @@
-package com.fundatec.bancoapi.model;
+package com.fundatec.bancoapi.model.pessoas;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fundatec.bancoapi.model.Endereco;
 import lombok.Data;
 import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Data
@@ -35,11 +35,11 @@ public abstract class PessoaFisica {
 
     @Column(name = "data_nascimento")
     @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate data_nascimento;
+    private LocalDate dataNascimento;
 
     @Column(name = "data_cadastro")
     @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate data_cadastro;
+    private LocalDate dataCadastro;
 
     @Column (name = "status")
     private Boolean status;
