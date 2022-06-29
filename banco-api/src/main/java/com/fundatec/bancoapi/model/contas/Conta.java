@@ -19,13 +19,33 @@ public abstract class Conta {
     private String cpfTitular;
 
     @Column(name = "saldo")
-    private BigDecimal saldo;
+    private BigDecimal saldo = BigDecimal.ZERO;
 
     private String senhaAcesso;
 
     private List movimentacaoList;
 
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
+
+
+
+    public void depositar(BigDecimal valor) {
+        if ( valor== null || valor.compareTo(BigDecimal.valueOf(0.0)) == 0|| valor.compareTo(BigDecimal.valueOf(0.0)) == -1 ){
+            throw new IllegalArgumentException("valor inválido, logo não pode ser depositado");
+        } else {
+            saldo = saldo.add(valor);
+        }
     }
+
+    public void sacar(BigDecimal valor) throws RuntimeException {
+        if ( valor== null || valor.compareTo(BigDecimal.valueOf(0.0)) == 0 || valor.compareTo(BigDecimal.valueOf(0.0)) == -1 ) {
+            throw new IllegalArgumentException("valor inválido, logo não pode ser sacado");
+        } else if (valor.compareTo(saldo) == 1) {
+            throw new RuntimeException("impossivel sacar um valor maior que seu saldo");
+        } else if (getSaldo().compareTo(BigDecimal.valueOf(0.0)) == 0) {
+            throw new RuntimeException("impossivel sacar pois seu saldo está zerado");
+        } else {
+            saldo = saldo.subtract(valor);
+        }
+    }
+
 }
