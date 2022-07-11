@@ -3,10 +3,10 @@ package com.fundatec.bancoapi.controller;
 
 import com.fundatec.bancoapi.model.contas.Conta;
 import com.fundatec.bancoapi.service.CaixaAutomaticoService;
-import org.hibernate.mapping.List;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/caixa_automatico")
@@ -26,7 +26,7 @@ public class CaixaAutomaticoController {
     }
 
     @GetMapping("/extratos/{cpf}")
-    public List consultarExtrato(@PathVariable Conta conta){
+    public List<String> consultarExtrato(@PathVariable Conta conta){
         return service.consultarExtrato(conta);
     }
 

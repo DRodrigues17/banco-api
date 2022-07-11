@@ -21,7 +21,7 @@ public class Banco {
     @Column(name = "nome")
     private String nome;
 
-    private String senha;
+    private String senhaGerencial;
 
     private List<Cliente> clientes;
 

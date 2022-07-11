@@ -23,6 +23,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.h2database:h2:2.1.212'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+
 
 
 	compileOnly 'org.projectlombok:lombok'
@@ -31,7 +34,7 @@ dependencies {
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'junit:junit:4.13.2'
-	testImplementation 'org.mockito:mockito-core:4.4.0'
+	testImplementation 'org.mockito:mockito-core:4.6.1'
 }
 
 tasks.named('test') {
