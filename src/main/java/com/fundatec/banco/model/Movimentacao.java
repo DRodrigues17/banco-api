@@ -23,6 +23,7 @@ public class Movimentacao {
     private Integer id;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "conta_id")
+    @JsonBackReference
     private Conta contaAcesso;
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;

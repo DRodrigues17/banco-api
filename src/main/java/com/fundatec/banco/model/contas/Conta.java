@@ -1,9 +1,6 @@
 package com.fundatec.banco.model.contas;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.model.Movimentacao;
@@ -51,6 +48,7 @@ public abstract class Conta {
     @Column(name = "senha")
     private String senhaAcesso;
 
+    @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaAcesso")
     @JsonManagedReference
     private List<Movimentacao> movimentacoes;
