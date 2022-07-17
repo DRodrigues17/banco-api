@@ -1,16 +1,52 @@
-insert into tb_banco (id, contas, nome , clientes, senha)
-values(1, null, 'bancoso', null, '1234');
---
---insert into tb_movimentacoes (id, cliente, contaOrigem,contaDestino,valor, dataMovimentacao)
---values (1, 1, null, null, 20, '2001-03-20 12:00:00')
-----
-insert into tb_conta(id,cfpTitular,saldo,status,senhaAcesso)
-values (1, null, 2000, 'INATIVA', '1234');
-----
-insert into tb_endereco(id ,uf, logradouro, cidade, bairro) values (1 ,'RS','silva tavares', 'PortoAlegre','AssisBrasil');
-----
-----insert into tb_pessoa(id,nome, cpf, endereco, sexo, dataNascimento, dataCadastro)
-----values(1, 'maico', '01664551229', 1, 'M','2000-03-20','2005-05-20');
-----
-insert into tb_cliente(id,nome, cpf, endereco, sexo, dataNascimento, dataCadastro, profissao, conta, banco)
-values (1, 'maico', '01664551229', 1, 'M','2000-03-20','2005-05-20', 'massagista', 1, 1);
+INSERT INTO TB_BANCO (nome, senha)
+	VALUES	('Banrisul', 'Banrisul'),
+			('Banco do Brasil ', 'Banco do Brasil'),
+			('Sicredi', 'Sicredi'),
+			('Unicred', 'Unicred'),
+			('Banco Inter', 'Banco Inter');
+
+INSERT INTO conta (cpf_titular,saldo,senha,status,banco_id)
+VALUES
+(null, 5000, 'memes', 0, '1'),
+('01616489772', 10000, 'patos',0, '2'),
+('02155489704', 2000, 'carros', 0, '3'),
+('01623789712', 10000, 'senhas', 1, '4'),
+('01697389752', 40000, 'passwords', 1, '5');
+
+INSERT INTO conta_simples_tb(conta_id)
+VALUES
+(1),
+(2),
+(3);
+
+INSERT INTO conta_especial_tb(limite_gastos, conta_id)
+VALUES
+(5000, 4);
+
+INSERT INTO conta_poupanca(taxa_juros, conta_id)
+VALUE
+(0.15, 5);
+
+INSERT INTO tb_pessoa(cpf, data_cadastro, data_nascimento, nome, sexo)
+VALUES
+('01655489709','2020-05-12', '1996-07-20', 'João Cláudio Albuquerque', 'MASCULINO'),
+('01616489772','2020-05-12', '2002-09-01', 'Pedro Mendes', 'MASCULINO'),
+('02155489704','2020-05-12', '1990-12-23', 'Carlos Eduardo', 'MASCULINO'),
+('01623789712','2020-05-12', '1968-03-10', 'Vladimir Pinto', 'MASCULINO'),
+('01697389752','2020-05-12', '1995-05-12', 'Johanna Baptista', 'FEMININO');
+
+INSERT INTO tb_cliente(profissão, pessoa_id,banco_id, conta_id)
+VALUES
+('Médico', 1,1,1),
+('Advogado', 3,3,3),
+('Barman', 4,4,4),
+('Dentista', 5,5,5),
+('Política', 2,2,2);
+
+INSERT INTO tb_endereco (bairro, cidade, logradouro, uf, pessoa_id)
+VALUES
+('Passo da areia', 'Porto Alegre' ,'Rua Vinte e Nove, 194', 20, 1 ),
+('Jardim são pedro', 'Porto Alegre',  'Rua Vinte e tres, 165', 20, 5),
+('Belém Velho', 'Porto Alegre',  'Rua Vinte e quatro, 220', 20, 2 ),
+('Cristal', 'Porto Alegre',  'Rua Vinte e cinco 3906', 20, 3 ),
+('São Bento', 'Porto Alegre',  'Rua Vinte e seis 4040', 20, 4 );
