@@ -4,13 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcf22a6d-ba5e-488b-a7a3-96e2d8cbd982" name="Changes" comment="exceptions criadas">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    <list default="true" id="bcf22a6d-ba5e-488b-a7a3-96e2d8cbd982" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/BancoApiApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/controller/CaixaAutomaticoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/controller/GerenciamentoAdmController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/controller/GerenciamentoBancoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/controller/GerenciamentoClienteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/controller/GerenciamentoContaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/controller/MovimentacaoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/converter/BancoConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/converter/BancoRequestConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/converter/ClienteConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/converter/ClienteResponseConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/converter/ContaConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/converter/ContaResponseConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/model/contas/Conta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/model/contas/ContaPoupanca.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/model/enums/StatusConta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/model/enums/Uf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/model/pessoas/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/repository/GerenciamentoAdmRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/repository/GerenciamentoBancoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/repository/GerenciamentoClienteRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/repository/GerenciamentoContaCustomRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/repository/GerenciamentoContaCustomRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/repository/GerenciamentoContaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/repository/MovimentacaoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/service/CaixaAutomaticoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/service/GerenciamentoAdmService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/service/GerenciamentoBancoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/service/GerenciamentoClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/service/GerenciamentoContaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/bancoapi/service/MovimentacaoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/fundatec/bancoapi/BancoApiApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/fundatec/bancoapi/model/contas/ContaEspecialTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/fundatec/bancoapi/model/contas/ContaPoupancaTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/fundatec/bancoapi/model/contas/ContaTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/fundatec/bancoapi/service/CaixaAutomaticoServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
