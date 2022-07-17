@@ -1,8 +1,6 @@
 package com.fundatec.banco.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fundatec.banco.model.Banco;
-import com.fundatec.banco.model.Movimentacao;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -17,12 +15,12 @@ import java.util.List;
 @Setter
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ContaDto {
+public class ContaResponseDto {
 
     private Integer id;
     private String cpfTitular;
-    private BancoDto banco;
-    private List<Movimentacao> movimentacaoList;
+    private BancoResponseDto banco;
+    private List<MovimentacaoResponseDto> movimentacaoList;
     private BigDecimal saldo;
 
 

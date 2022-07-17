@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Getter
 @Table(name = "tb_pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "id")
 @JsonSubTypes({
        @JsonSubTypes.Type(value = Cliente.class, name = "cliente"),
        @JsonSubTypes.Type(value = Profissional.class, name = "profissional")

@@ -18,7 +18,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "id")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = ContaSimples.class, name = "conta_simples"),
         @JsonSubTypes.Type(value = ContaEspecial.class, name = "conta_especial"),

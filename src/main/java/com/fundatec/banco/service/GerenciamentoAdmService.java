@@ -22,7 +22,6 @@ public class GerenciamentoAdmService {
         this.clienteRepository = clienteRepository;
         this.contaRepository = contaRepository;
     }
-
     public boolean verificarCredenciais(Integer idBanco, String senha) {
         Banco banco = bancoRepository.findById(idBanco).orElseThrow(() -> new RuntimeException(("Banco não encontrado")));
         return Objects.equals(banco.getSenha(), senha);

@@ -26,25 +26,48 @@ public class CaixaAutomaticoService {
     }
 
     public void depositar(Conta conta, BigDecimal valor) {
-        conta.depositar(valor);
+        conta.checarStatus();
+        Movimentacao novaMovimentacao = gerarDadosParaMovimentacao(conta, valor);
+        BigDecimal saldo = conta.getSaldo();
+        conta.setSaldo(saldo.add(valor));
+        addMovimentacao(novaMovimentacao);
     }
 
     public void sacar(Conta conta, BigDecimal valor) {
         conta.checarStatus();
-        conta.sacar(valor);
+        Movimentacao novaMovimentacao = gerarDadosParaMovimentacao(conta, valor);
+        BigDecimal saldo = conta.getSaldo();
+        conta.setSaldo(saldo.subtract(valor));
+        addMovimentacao(novaMovimentacao);
+    }
+
+    private void addMovimentacao(Movimentacao novaMovimentacao) {
+        service.saveMovimentacao(Movimentacao.builder()
+                        .id(novaMovimentacao.getId())
+                        .contaAcesso(novaMovimentacao.getContaAcesso())
+                        .valor(novaMovimentacao.getValor())
+                        .dataMovimentacao(novaMovimentacao.getDataMovimentacao())
+                .build());
     }
 
     public Movimentacao transferir(Conta contaOrigem, Conta contaDestino, BigDecimal valor) {
+        Movimentacao novaMovimentacao = gerarDadosParaMovimentacao(contaOrigem,valor);
         contaOrigem.sacar(valor);
         contaDestino.depositar(valor);
-        LocalDateTime dataMovimentacao = LocalDateTime.now();
-        Movimentacao movimentacao = new Movimentacao();
-        movimentacao.setValor(valor);
-        movimentacao.setContaAcesso(contaOrigem);
         return service.saveMovimentacao(Movimentacao
                 .builder()
-                .valor(movimentacao.getValor())
-                .contaAcesso(movimentacao.getContaAcesso())
+                .id(novaMovimentacao.getId())
+                .valor(novaMovimentacao.getValor())
+                .contaAcesso(novaMovimentacao.getContaAcesso())
+                .dataMovimentacao(novaMovimentacao.getDataMovimentacao())
                 .build());
+    }
+
+    public Movimentacao gerarDadosParaMovimentacao(Conta conta, BigDecimal valor){
+        Movimentacao movimentacao = new Movimentacao();
+        movimentacao.setValor(valor);
+        movimentacao.setContaAcesso(conta);
+        movimentacao.setDataMovimentacao(LocalDateTime.now());
+        return movimentacao;
     }
 }

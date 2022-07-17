@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.model.contas.Conta;
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -14,10 +16,11 @@ import javax.persistence.*;
 @Setter
 @Table(name = "tb_cliente")
 @JsonTypeName("cliente")
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente extends PessoaFisica {
+
+
 
     @Column(name = "profissão")
     private String profissao;
@@ -33,4 +36,5 @@ public class Cliente extends PessoaFisica {
     @JsonBackReference(value = "banco_cliente")
     @JoinColumn(name = "banco_id", referencedColumnName = "banco_id")
     private Banco banco;
+
 }

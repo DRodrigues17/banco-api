@@ -2,7 +2,7 @@ package com.fundatec.banco.controller;
 
 
 import com.fundatec.banco.converter.ContaResponseConverter;
-import com.fundatec.banco.dto.ContaDto;
+import com.fundatec.banco.dto.ContaResponseDto;
 import com.fundatec.banco.model.contas.Conta;
 import com.fundatec.banco.service.GerenciamentoContaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,29 +26,27 @@ public class GerenciamentoContaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ContaDto>> findAll() {
-        List<ContaDto> contaDtos = service.findAll().stream()
+    public ResponseEntity<List<ContaResponseDto>> findAll() {
+        List<ContaResponseDto> contaResponseDtos = service.findAll().stream()
                 .map(converter::convert)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(contaDtos);
+        return ResponseEntity.ok(contaResponseDtos);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ContaDto> findBancoById(@PathVariable("id") Integer id) {
+    public ResponseEntity<ContaResponseDto> findBancoById(@PathVariable("id") Integer id) {
         Conta contaDto = service.findById(id);
         return ResponseEntity.ok(converter.convert(contaDto));
     }
 
-
-
     @PatchMapping("/{id}")
-    public ResponseEntity<ContaDto> ModificarStatusConta(@PathVariable("id") Integer id){
+    public ResponseEntity<ContaResponseDto> ModificarStatusConta(@PathVariable("id") Integer id){
         return ResponseEntity.ok(converter.convert(service.alterarStatus(id)));
     }
 
     @PatchMapping("/{idConta}/clientes/{idCliente}")
-    public ResponseEntity<ContaDto> VincularTiularDaConta(@PathVariable("idConta") Integer idConta,
-    @PathVariable("idCliente") Integer idCliente){
+    public ResponseEntity<ContaResponseDto> VincularTiularDaConta(@PathVariable("idConta") Integer idConta,
+                                                                  @PathVariable("idCliente") Integer idCliente){
         return ResponseEntity.ok(converter.convert(service.setTitular(idConta,idCliente)));
     }
 }

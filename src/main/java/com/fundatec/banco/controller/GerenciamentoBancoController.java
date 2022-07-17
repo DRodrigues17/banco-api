@@ -1,7 +1,7 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.BancoRequestConverter;
-import com.fundatec.banco.dto.BancoDto;
+import com.fundatec.banco.converter.BancoResponseConverter;
+import com.fundatec.banco.dto.BancoResponseDto;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.service.GerenciamentoBancoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,33 +18,30 @@ public class GerenciamentoBancoController {
 
     @Autowired
     private final GerenciamentoBancoService service;
-    private final BancoRequestConverter converter;
+    @Autowired
+    private final BancoResponseConverter converter;
 
-
-    public GerenciamentoBancoController(GerenciamentoBancoService service, BancoRequestConverter converter) {
+    public GerenciamentoBancoController(GerenciamentoBancoService service, BancoResponseConverter converter) {
         this.service = service;
         this.converter = converter;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<List<Banco>> findAll(){
+    public ResponseEntity<List<Banco>> findAll() {
         Iterable<Banco> bancoDto = service.findAll();
-        List<Banco> banco = StreamSupport.stream(bancoDto.spliterator(), false)
-                .toList();
+        List<Banco> banco = StreamSupport.stream(bancoDto.spliterator(), false).toList();
         return ResponseEntity.ok(banco);
     }
 
-
     @GetMapping("/{id}")
-    public ResponseEntity<Banco> findBancoById(@PathVariable("id") Integer id) {
+    public ResponseEntity<BancoResponseDto> findBancoById(@PathVariable("id") Integer id) {
         Banco banco = service.findById(id);
-        return ResponseEntity.ok(banco);
+        return ResponseEntity.ok(converter.convert(banco));
     }
 
     @PostMapping
-    public ResponseEntity<Banco> criarNovoBanco(@RequestBody BancoDto bancoDto){
-      Banco banco = converter.convert(bancoDto);
+    public ResponseEntity<Banco> criarNovoBanco(@RequestBody Banco banco) {
         return ResponseEntity.ok(service.saveBanco(banco));
     }
 }

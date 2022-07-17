@@ -28,7 +28,7 @@ public class Movimentacao {
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
 
-    @Column(name = "data_movimentacao", nullable = false)
+    @Column(name = "data_movimentacao", nullable = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataMovimentacao;
 

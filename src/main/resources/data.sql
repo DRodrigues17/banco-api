@@ -33,7 +33,8 @@ VALUES
 ('01616489772','2020-05-12', '2002-09-01', 'Pedro Mendes', 'MASCULINO'),
 ('02155489704','2020-05-12', '1990-12-23', 'Carlos Eduardo', 'MASCULINO'),
 ('01623789712','2020-05-12', '1968-03-10', 'Vladimir Pinto', 'MASCULINO'),
-('01697389752','2020-05-12', '1995-05-12', 'Johanna Baptista', 'FEMININO');
+('01697389752','2020-05-12', '1995-05-12', 'Johanna Baptista', 'FEMININO'),
+('03695488752','2020-05-12', '1985-05-12', 'Rosana Baptista', 'FEMININO');
 
 INSERT INTO tb_cliente(profissão, pessoa_id,banco_id, conta_id)
 VALUES

@@ -1,9 +1,40 @@
 package com.fundatec.banco.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.fundatec.banco.converter.MovimentacaoResponseConverter;
+import com.fundatec.banco.dto.MovimentacaoResponseDto;
+import com.fundatec.banco.model.Movimentacao;
+import com.fundatec.banco.service.MovimentacaoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("/movimentacoes")
+@RequestMapping("v1/movimentacoes")
+@RequiredArgsConstructor
 public class MovimentacaoController{
+
+    @Autowired
+    private final MovimentacaoService service;
+    @Autowired
+    private final MovimentacaoResponseConverter converter;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MovimentacaoResponseDto> findMovimentacaoById(@RequestHeader Integer idBanco, @RequestHeader Integer idConta, @PathVariable("id") Integer id){
+        Movimentacao movimentacao = service.findById(id);
+        return ResponseEntity.ok(converter.convert(movimentacao));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MovimentacaoResponseDto>> findAll(@RequestHeader Integer idBanco, @RequestHeader Integer idConta){
+        Iterable<Movimentacao> movimentacoes = service.verificarMovimentacoesPorConta(idBanco,idConta);
+        List<MovimentacaoResponseDto> movimentacaoResponseDtos = StreamSupport.stream(movimentacoes.spliterator(), false)
+                .map(converter::convert)
+                .toList();
+        return ResponseEntity.ok(movimentacaoResponseDtos);
+    }
+
 }

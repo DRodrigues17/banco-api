@@ -2,17 +2,15 @@ package com.fundatec.banco.controller;
 
 import com.fundatec.banco.converter.ClienteResponseConverter;
 import com.fundatec.banco.converter.ContaResponseConverter;
-import com.fundatec.banco.dto.BancoDto;
-import com.fundatec.banco.dto.ClienteDto;
-import com.fundatec.banco.dto.ContaDto;
-import com.fundatec.banco.model.Banco;
+import com.fundatec.banco.dto.ClienteResponseDto;
+import com.fundatec.banco.dto.ContaResponseDto;
 import com.fundatec.banco.model.contas.Conta;
 import com.fundatec.banco.model.pessoas.Cliente;
 import com.fundatec.banco.service.GerenciamentoAdmService;
 import com.fundatec.banco.service.GerenciamentoClienteService;
 import com.fundatec.banco.service.GerenciamentoContaService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,16 +21,20 @@ import org.springframework.web.bind.annotation.*;
 public class GerenciamentoAdmController {
 
 
-    private final GerenciamentoAdmService admService;
-    private final ClienteResponseConverter clienteResponseConverter;
-    private final GerenciamentoClienteService clienteService;
 
-    private final GerenciamentoContaService bancoService;
+    @Autowired
+    private final GerenciamentoAdmService admService;
+    @Autowired
+    private final ClienteResponseConverter clienteResponseConverter;
+    @Autowired
+    private final GerenciamentoClienteService clienteService;
+    @Autowired
     private final GerenciamentoContaService contaService;
+    @Autowired
     private final ContaResponseConverter contaResponseConverter;
 
     @PostMapping("/clientes")
-    public ResponseEntity<ClienteDto> newCliente(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Cliente cliente) {
+    public ResponseEntity<ClienteResponseDto> newCliente(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Cliente cliente) {
         if (admService.verificarCredenciais(idBanco, senha)) {
             Cliente clienteDto = clienteService.saveCliente(cliente);
             return ResponseEntity.ok(clienteResponseConverter.convert(clienteDto));
@@ -41,7 +43,7 @@ public class GerenciamentoAdmController {
     }
 
     @PostMapping("/contaSimples")
-    public ResponseEntity<ContaDto> newConta(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Conta conta) {
+    public ResponseEntity<ContaResponseDto> newConta(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Conta conta) {
         if (admService.verificarCredenciais(idBanco, senha)) {
             admService.verificarCredenciais(idBanco, senha);
             Conta contaDto = contaService.criarConta(conta);
