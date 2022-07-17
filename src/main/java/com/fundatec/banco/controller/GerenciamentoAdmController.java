@@ -40,7 +40,7 @@ public class GerenciamentoAdmController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
-    @PostMapping("/contas")
+    @PostMapping("/contaSimples")
     public ResponseEntity<ContaDto> newConta(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Conta conta) {
         if (admService.verificarCredenciais(idBanco, senha)) {
             admService.verificarCredenciais(idBanco, senha);
@@ -50,5 +50,24 @@ public class GerenciamentoAdmController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
+//    @PostMapping("/contasPoupanca")
+//    public ResponseEntity<ContaDto> newConta(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Conta conta) {
+//        if (admService.verificarCredenciais(idBanco, senha)) {
+//            admService.verificarCredenciais(idBanco, senha);
+//            Conta contaDto = contaService.criarConta(conta);
+//            return ResponseEntity.ok(contaResponseConverter.convert(contaDto));
+//        }
+//        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+//    }
+//
+//    @PostMapping("/contasEspecial")
+//    public ResponseEntity<ContaDto> newConta(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Conta conta) {
+//        if (admService.verificarCredenciais(idBanco, senha)) {
+//            admService.verificarCredenciais(idBanco, senha);
+//            Conta contaDto = contaService.criarConta(conta);
+//            return ResponseEntity.ok(contaResponseConverter.convert(contaDto));
+//        }
+//        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+//    }
 
 }
