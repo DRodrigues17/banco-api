@@ -1,11 +1,13 @@
 package com.fundatec.banco.service;
 
+import com.fundatec.banco.dto.ContaDto;
 import com.fundatec.banco.model.contas.Conta;
 import com.fundatec.banco.model.enums.StatusConta;
 import com.fundatec.banco.model.pessoas.Cliente;
 import com.fundatec.banco.repository.GerenciamentoClienteRepository;
 import com.fundatec.banco.repository.GerenciamentoContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +45,10 @@ public class GerenciamentoContaService {
         return repository.save(conta);
     }
 
+    public Conta criarConta(Conta conta){
+        return repository.save(conta);
+    }
+
     public Conta findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new RuntimeException(("Cliente não encontrado")));
     }
@@ -58,5 +64,14 @@ public class GerenciamentoContaService {
        return conta;
        }
        throw new RuntimeException("A conta em questão já possui um titular.");
+    }
+
+
+    public Conta alterarStatus(Integer id) {
+        Conta conta =findById(id);
+        if(conta.getStatus()== StatusConta.INATIVA) {
+            return ativarConta(id);
+        }
+        return desativarConta(id);
     }
 }
