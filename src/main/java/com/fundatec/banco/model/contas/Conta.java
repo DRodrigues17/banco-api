@@ -1,5 +1,10 @@
 package com.fundatec.banco.model.contas;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.model.enums.StatusConta;
@@ -9,12 +14,19 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+
 @Entity
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ContaSimples.class, name = "conta_simples"),
+        @JsonSubTypes.Type(value = ContaEspecial.class, name = "conta_especial"),
+        @JsonSubTypes.Type(value = ContaPoupanca.class, name = "conta_poupanca")
+})
 public abstract class Conta {
 
     @Id
@@ -25,8 +37,8 @@ public abstract class Conta {
     @Column(name = "cpf_titular", nullable = true, unique = true)
     private String cpfTitular;
 
-    @ManyToOne
-    @MapsId("banco_id")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JsonBackReference(value = "banco_conta")
     @JoinColumn(name = "banco_id", referencedColumnName = "banco_id")
     private Banco banco;
 
@@ -39,9 +51,9 @@ public abstract class Conta {
     @Column(name = "senha")
     private String senhaAcesso;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contaAcesso")
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaAcesso")
+    @JsonManagedReference
     private List<Movimentacao> movimentacoes;
-
 
     public void checarStatus() throws RuntimeException {
         if (StatusConta.INATIVA == getStatus()) {

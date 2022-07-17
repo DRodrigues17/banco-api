@@ -1,5 +1,6 @@
 package com.fundatec.banco.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fundatec.banco.model.enums.Uf;
 import com.fundatec.banco.model.pessoas.PessoaFisica;
 import lombok.*;
@@ -36,5 +37,5 @@ public class Endereco {
     @OneToOne
     @MapsId("pessoa_id")
     @JoinColumn(name = "pessoa_id",referencedColumnName = "pessoa_id")
-    private PessoaFisica cliente;
+    private PessoaFisica pessoaFisica;
 }

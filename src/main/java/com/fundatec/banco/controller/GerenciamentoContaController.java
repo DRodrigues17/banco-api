@@ -4,7 +4,6 @@ package com.fundatec.banco.controller;
 import com.fundatec.banco.converter.ContaResponseConverter;
 import com.fundatec.banco.dto.ContaDto;
 import com.fundatec.banco.model.contas.Conta;
-import com.fundatec.banco.model.enums.StatusConta;
 import com.fundatec.banco.service.GerenciamentoContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +25,6 @@ public class GerenciamentoContaController {
         this.converter = converter;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ContaDto> findBancoById(@PathVariable("id") Integer id) {
-        Conta contaDto = service.findById(id);
-        return ResponseEntity.ok(converter.convert(contaDto));
-    }
-
     @GetMapping
     public ResponseEntity<List<ContaDto>> findAll() {
         List<ContaDto> contaDtos = service.findAll().stream()
@@ -40,12 +33,17 @@ public class GerenciamentoContaController {
         return ResponseEntity.ok(contaDtos);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ContaDto> findBancoById(@PathVariable("id") Integer id) {
+        Conta contaDto = service.findById(id);
+        return ResponseEntity.ok(converter.convert(contaDto));
+    }
+
+
+
     @PatchMapping("/{id}")
     public ResponseEntity<ContaDto> ModificarStatusConta(@PathVariable("id") Integer id){
-        if(service.findById(id).getStatus()== StatusConta.INATIVA) {
-            return ResponseEntity.ok(converter.convert(service.ativarConta(id)));
-        }
-        return ResponseEntity.ok(converter.convert(service.desativarConta(id)));
+        return ResponseEntity.ok(converter.convert(service.alterarStatus(id)));
     }
 
     @PatchMapping("/{idConta}/clientes/{idCliente}")

@@ -38,7 +38,7 @@ public class GerenciamentoClienteController {
     }
 
     @PutMapping
-    public ResponseEntity<ClienteDto> atualizar(@RequestBody Cliente cliente) {
+    public ResponseEntity<ClienteDto> newCliente(@RequestBody Cliente cliente) {
         Cliente clienteDto = service.saveCliente(cliente);
         return ResponseEntity.ok(converter.convert(clienteDto));
     }

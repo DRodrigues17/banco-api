@@ -5,6 +5,8 @@ import com.fundatec.banco.repository.GerenciamentoBancoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GerenciamentoBancoService {
 
@@ -18,6 +20,10 @@ public class GerenciamentoBancoService {
     public Banco saveBanco(Banco banco) {
 
         return repository.save(banco);
+    }
+
+    public List<Banco> findAll() {
+        return repository.findAll();
     }
 
     public Banco findById(Integer id) {

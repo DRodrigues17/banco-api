@@ -1,5 +1,6 @@
 package com.fundatec.banco.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fundatec.banco.model.contas.Conta;
 import lombok.*;
@@ -20,7 +21,7 @@ public class Movimentacao {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "conta_id")
     private Conta contaAcesso;
     @Column(name = "valor", nullable = false)

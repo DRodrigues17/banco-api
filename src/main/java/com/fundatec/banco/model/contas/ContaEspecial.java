@@ -1,5 +1,6 @@
 package com.fundatec.banco.model.contas;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "conta_especial_tb")
+@JsonTypeName("conta_especial")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
