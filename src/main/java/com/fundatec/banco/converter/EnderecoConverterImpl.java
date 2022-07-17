@@ -1,9 +1,11 @@
 package com.fundatec.banco.converter;
 
-import com.fundatec.banco.dto.EnderecoResponseDto;
+import com.fundatec.banco.dto.responseDtos.EnderecoResponseDto;
 import com.fundatec.banco.model.Endereco;
+import org.springframework.stereotype.Component;
 
-public class EnderecoResponseConverter implements EnderecoConverter<Endereco, EnderecoResponseDto> {
+@Component
+public class EnderecoConverterImpl implements EnderecoConverter<Endereco, EnderecoResponseDto> {
 
     @Override
     public EnderecoResponseDto convert(Endereco endereco) {

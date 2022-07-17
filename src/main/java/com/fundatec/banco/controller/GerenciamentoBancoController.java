@@ -1,9 +1,10 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.BancoResponseConverter;
-import com.fundatec.banco.dto.BancoResponseDto;
+import com.fundatec.banco.converter.BancoConverterImpl;
+import com.fundatec.banco.dto.responseDtos.BancoResponseDto;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.service.GerenciamentoBancoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +14,14 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/v1/bancos")
 public class GerenciamentoBancoController {
 
     @Autowired
     private final GerenciamentoBancoService service;
     @Autowired
-    private final BancoResponseConverter converter;
-
-    public GerenciamentoBancoController(GerenciamentoBancoService service, BancoResponseConverter converter) {
-        this.service = service;
-        this.converter = converter;
-    }
+    private final BancoConverterImpl converter;
 
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -41,7 +38,7 @@ public class GerenciamentoBancoController {
     }
 
     @PostMapping
-    public ResponseEntity<Banco> criarNovoBanco(@RequestBody Banco banco) {
-        return ResponseEntity.ok(service.saveBanco(banco));
+    public ResponseEntity<BancoResponseDto> criarNovoBanco(@RequestBody Banco banco) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(converter.convert(service.saveBanco(banco)));
     }
 }

@@ -1,12 +1,12 @@
 package com.fundatec.banco.converter;
 
-import com.fundatec.banco.dto.MovimentacaoResponseDto;
+import com.fundatec.banco.dto.responseDtos.MovimentacaoResponseDto;
 import com.fundatec.banco.model.Movimentacao;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class MovimentacaoResponseConverter implements MovimentacaoConverter<Movimentacao, MovimentacaoResponseDto>{
+public class MovimentacaoConverterImpl implements MovimentacaoConverter<Movimentacao, MovimentacaoResponseDto>{
 
     @Override
     public MovimentacaoResponseDto convert(Movimentacao movimentacao) {

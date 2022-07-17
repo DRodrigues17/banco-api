@@ -1,9 +1,9 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.ClienteResponseConverter;
-import com.fundatec.banco.converter.ContaResponseConverter;
-import com.fundatec.banco.dto.ClienteResponseDto;
-import com.fundatec.banco.dto.ContaResponseDto;
+import com.fundatec.banco.converter.ClienteConverterImpl;
+import com.fundatec.banco.converter.ContaConverterImpl;
+import com.fundatec.banco.dto.responseDtos.ClienteResponseDto;
+import com.fundatec.banco.dto.responseDtos.ContaResponseDto;
 import com.fundatec.banco.model.contas.Conta;
 import com.fundatec.banco.model.pessoas.Cliente;
 import com.fundatec.banco.service.GerenciamentoAdmService;
@@ -19,35 +19,32 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1/administrativo")
 @RequiredArgsConstructor
 public class GerenciamentoAdmController {
-
-
-
     @Autowired
     private final GerenciamentoAdmService admService;
     @Autowired
-    private final ClienteResponseConverter clienteResponseConverter;
+    private final ClienteConverterImpl clienteConverterImpl;
     @Autowired
     private final GerenciamentoClienteService clienteService;
     @Autowired
     private final GerenciamentoContaService contaService;
     @Autowired
-    private final ContaResponseConverter contaResponseConverter;
+    private final ContaConverterImpl contaConverterImpl;
 
     @PostMapping("/clientes")
     public ResponseEntity<ClienteResponseDto> newCliente(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Cliente cliente) {
         if (admService.verificarCredenciais(idBanco, senha)) {
             Cliente clienteDto = clienteService.saveCliente(cliente);
-            return ResponseEntity.ok(clienteResponseConverter.convert(clienteDto));
+            return ResponseEntity.ok(clienteConverterImpl.convert(clienteDto));
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
-    @PostMapping("/contaSimples")
+    @PostMapping("/contas")
     public ResponseEntity<ContaResponseDto> newConta(@RequestHeader Integer idBanco, @RequestHeader String senha, @RequestBody Conta conta) {
         if (admService.verificarCredenciais(idBanco, senha)) {
             admService.verificarCredenciais(idBanco, senha);
             Conta contaDto = contaService.criarConta(conta);
-            return ResponseEntity.ok(contaResponseConverter.convert(contaDto));
+            return ResponseEntity.ok(contaConverterImpl.convert(contaDto));
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }

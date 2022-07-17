@@ -1,9 +1,8 @@
 package com.fundatec.banco.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fundatec.banco.model.enums.Uf;
-import com.fundatec.banco.model.pessoas.PessoaFisica;
+import com.fundatec.banco.model.pessoas.Cliente;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,6 +36,6 @@ public class Endereco {
 
     @OneToOne
     @JsonIgnore
-    @JoinColumn(name = "pessoa_id",referencedColumnName = "pessoa_id")
-    private PessoaFisica pessoaFisica;
+    @JoinColumn(name = "endereco_id")
+    private Cliente cliente;
 }

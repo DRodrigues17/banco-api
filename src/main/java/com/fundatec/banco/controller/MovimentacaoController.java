@@ -1,7 +1,7 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.MovimentacaoResponseConverter;
-import com.fundatec.banco.dto.MovimentacaoResponseDto;
+import com.fundatec.banco.converter.MovimentacaoConverterImpl;
+import com.fundatec.banco.dto.responseDtos.MovimentacaoResponseDto;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.service.MovimentacaoService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class MovimentacaoController{
     @Autowired
     private final MovimentacaoService service;
     @Autowired
-    private final MovimentacaoResponseConverter converter;
+    private final MovimentacaoConverterImpl converter;
 
     @GetMapping("/{id}")
     public ResponseEntity<MovimentacaoResponseDto> findMovimentacaoById(@RequestHeader Integer idBanco, @RequestHeader Integer idConta, @PathVariable("id") Integer id){

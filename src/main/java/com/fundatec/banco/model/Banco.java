@@ -28,11 +28,6 @@ public class Banco {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
     private List<Conta> contas;
 
-    @JsonIgnore
-    @JsonManagedReference(value = "banco_cliente")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
-    private List<Cliente> clientes;
-
     @Column(name = "nome")
     private String nome;
 

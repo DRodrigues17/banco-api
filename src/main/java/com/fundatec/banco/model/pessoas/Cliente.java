@@ -1,40 +1,42 @@
 package com.fundatec.banco.model.pessoas;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fundatec.banco.model.Banco;
-import com.fundatec.banco.model.contas.Conta;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fundatec.banco.model.Endereco;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.time.LocalDate;
 
 @Entity
+@Builder
 @Getter
-@Builder(builderMethodName = "clienteBuilder")
 @Setter
-@Table(name = "tb_cliente")
-@JsonTypeName("cliente")
-@NoArgsConstructor
+@Table(name = "tb_pessoa")
 @AllArgsConstructor
-public class Cliente extends PessoaFisica {
+@NoArgsConstructor
+public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pessoa_id")
+    private Integer id;
 
+    @Column(name = "nome", nullable = false)
+    private String nome;
 
-    @Column(name = "profissão")
-    private String profissao;
+    @Column(name = "CPF", length = 11, unique = true)
+    private String cpf;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @MapsId("conta_id")
-    @JsonBackReference(value = "conta_cliente")
-    @JoinColumn(name = "conta_id", referencedColumnName = "conta_id")
-    private Conta conta;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco", referencedColumnName = "endereco_id")
+    private Endereco endereco;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @MapsId("banco_id")
-    @JsonBackReference(value = "banco_cliente")
-    @JoinColumn(name = "banco_id", referencedColumnName = "banco_id")
-    private Banco banco;
+    @Column(name = "sexo")
+    private String sexo;
+
+    @Column(name = "data_nascimento")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataNascimento;
+
 
 }

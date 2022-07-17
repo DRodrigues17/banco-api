@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.model.enums.StatusConta;
+import com.fundatec.banco.model.enums.TipoConta;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,16 +16,11 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "id")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = ContaSimples.class, name = "conta_simples"),
-        @JsonSubTypes.Type(value = ContaEspecial.class, name = "conta_especial"),
-        @JsonSubTypes.Type(value = ContaPoupanca.class, name = "conta_poupanca")
-})
-public abstract class Conta {
+public class Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,18 +34,22 @@ public abstract class Conta {
     @JsonBackReference(value = "banco_conta")
     @JoinColumn(name = "banco_id", referencedColumnName = "banco_id")
     private Banco banco;
-
     @Column(name = "saldo")
-    private BigDecimal saldo = BigDecimal.ZERO;
+    private BigDecimal saldo;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StatusConta status;
 
     @Column(name = "senha")
     private String senhaAcesso;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_conta")
+    private TipoConta tipoConta;
+
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaAcesso")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaAcesso")
     @JsonManagedReference
     private List<Movimentacao> movimentacoes;
 
@@ -58,7 +58,6 @@ public abstract class Conta {
             throw new RuntimeException("A conta em questão está desativada, favor contatar seu gerente");
         }
     }
-
     public void depositar(BigDecimal valor) {
         if (valor == null || valor.compareTo(BigDecimal.valueOf(0.0)) == 0 || valor.compareTo(BigDecimal.valueOf(0.0)) == -1) {
             throw new IllegalArgumentException("valor inválido, logo não pode ser depositado");
@@ -67,7 +66,6 @@ public abstract class Conta {
             //adcionarMovimentacao("depósito de $" + valor + " efetuado com sucesso às " + LocalDateTime.now());
         }
     }
-
     public void sacar(BigDecimal valor) throws RuntimeException {
         if (valor == null || valor.compareTo(BigDecimal.valueOf(0.0)) == 0 || valor.compareTo(BigDecimal.valueOf(0.0)) < 0) {
             throw new IllegalArgumentException("valor inválido, logo não pode ser sacado");
