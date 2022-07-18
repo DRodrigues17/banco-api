@@ -21,8 +21,14 @@ public class ExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(ImpossivelCriarException.class)
-    public ResponseEntity<ApiErrorDTO> hndleUncreatable(ImpossivelCriarException e) {
+    public ResponseEntity<ApiErrorDTO> handleUncreatable(ImpossivelCriarException e) {
         return new ResponseEntity<>(new ApiErrorDTO(e.getMessage(), LocalDateTime.now()), HttpStatus.NOT_ACCEPTABLE);
+    }
+
+
+    @ExceptionHandler(ObjetoNaoEncontradoException.class)
+    public ResponseEntity<ApiErrorDTO> handleMethodNotAllowed(NaoPermitidoException e) {
+        return new ResponseEntity<>(new ApiErrorDTO(e.getMessage(), LocalDateTime.now()), HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @ExceptionHandler(ObjetoNaoEncontradoException.class)

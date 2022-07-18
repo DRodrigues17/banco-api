@@ -5,10 +5,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.model.enums.StatusConta;
+import com.fundatec.banco.model.enums.TipoOperacao;
 import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -53,31 +56,35 @@ public abstract class Conta {
     @JsonManagedReference
     private List<Movimentacao> movimentacoes;
 
-    public void checarStatus() throws RuntimeException {
+    public boolean checarStatus(StatusConta status){
         if (StatusConta.INATIVA == getStatus()) {
-            throw new RuntimeException("A conta em questão está desativada, favor contatar seu gerente");
+            return false;
         }
+        return true;
     }
 
     public void depositar(BigDecimal valor) {
-        if (valor == null || valor.compareTo(BigDecimal.valueOf(0.0)) == 0 || valor.compareTo(BigDecimal.valueOf(0.0)) == -1) {
+        if (valor == null || valor.compareTo(BigDecimal.valueOf(0.0)) == 0 || valor.compareTo(BigDecimal.valueOf(0.0)) < 0) {
             throw new IllegalArgumentException("valor inválido, logo não pode ser depositado");
         } else {
             saldo = saldo.add(valor);
-            //adcionarMovimentacao("depósito de $" + valor + " efetuado com sucesso às " + LocalDateTime.now());
         }
     }
 
     public void sacar(BigDecimal valor) throws RuntimeException {
-        if (valor == null || valor.compareTo(BigDecimal.valueOf(0.0)) == 0 || valor.compareTo(BigDecimal.valueOf(0.0)) < 0) {
+        if (valor == null || valor.compareTo(BigDecimal.ZERO) == 0 || valor.compareTo(BigDecimal.valueOf(0.0)) < 0) {
             throw new IllegalArgumentException("valor inválido, logo não pode ser sacado");
         } else if (valor.compareTo(saldo) > 0) {
             throw new RuntimeException("impossivel sacar um valor maior que seu saldo");
-        } else if (getSaldo().compareTo(BigDecimal.valueOf(0.0)) == 0) {
+        } else if (getSaldo().compareTo(BigDecimal.ZERO) == 0) {
             throw new RuntimeException("impossivel sacar pois seu saldo está zerado");
         } else {
             saldo = saldo.subtract(valor);
-            //adcionarMovimentacao("saque de $" + valor + " efetuado com sucesso às " + LocalDateTime.now());
         }
+    }
+
+    public void adcionarMovimentacao(Conta conta, TipoOperacao tipoOperacao, BigDecimal valor, LocalDateTime timestamp) {
+        Movimentacao movimentacao = new Movimentacao(conta, tipoOperacao, valor, timestamp);
+        movimentacoes.add(movimentacao);
     }
 }
