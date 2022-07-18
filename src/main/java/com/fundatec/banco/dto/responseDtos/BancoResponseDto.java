@@ -1,4 +1,4 @@
-package com.fundatec.banco.dto;
+package com.fundatec.banco.dto.responseDtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BancoDto {
+public class BancoResponseDto {
 
     private Integer id;
     private String nome;

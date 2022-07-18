@@ -1,8 +1,7 @@
-package com.fundatec.banco.dto;
+package com.fundatec.banco.dto.responseDtos;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fundatec.banco.model.Endereco;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -14,12 +13,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ClienteDto {
+public class ClienteResponseDto {
 
     private Integer id;
     private String nome;
     private String cpf;
-    private Endereco endereco;
+    private EnderecoResponseDto endereco;
 
 
 }

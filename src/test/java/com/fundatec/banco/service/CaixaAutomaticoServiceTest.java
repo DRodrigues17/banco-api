@@ -1,34 +1,36 @@
 package com.fundatec.banco.service;
 
 import com.fundatec.banco.exception.NaoPermitidoException;
-import com.fundatec.banco.model.Movimentacao;
-import com.fundatec.banco.model.contas.Conta;
-import com.fundatec.banco.model.contas.ContaSimples;
+import com.fundatec.banco.model.Conta;
 import com.fundatec.banco.model.enums.StatusConta;
-import com.fundatec.banco.model.enums.TipoOperacao;
-import org.junit.jupiter.api.BeforeEach;
+import com.fundatec.banco.model.enums.TipoConta;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CaixaAutomaticoServiceTest {
 
-    private ContaSimples conta;
+    private Conta conta;
     private static Logger logger = Logger.getLogger(Conta.class.getName());
+
     private MovimentacaoService service;
     private CaixaAutomaticoService automaticoService = new CaixaAutomaticoService(service);
 
-    @BeforeEach
+    @BeforeAll
     void init(){
-        conta = new ContaSimples(1111111111, null, null,
-                BigDecimal.valueOf(1223), StatusConta.ATIVA, null, null );
+        conta = new Conta(1, "12345678",null, BigDecimal.valueOf(0), StatusConta.ATIVA,
+                "cloud", TipoConta.SIMPLES, null );
 
-        conta.adcionarMovimentacao(conta, TipoOperacao.DEPOSITO, BigDecimal.valueOf(50), LocalDateTime.now());
-        conta.adcionarMovimentacao(conta, TipoOperacao.SAQUE, BigDecimal.valueOf(50), LocalDateTime.now());
+        automaticoService.addMovimentacao(automaticoService.gerarDadosParaMovimentacao(conta, BigDecimal.valueOf(60)));
+        automaticoService.addMovimentacao(automaticoService.gerarDadosParaMovimentacao(conta, BigDecimal.valueOf(35)));
+        automaticoService.addMovimentacao(automaticoService.gerarDadosParaMovimentacao(conta, BigDecimal.valueOf(70)));
+        automaticoService.addMovimentacao(automaticoService.gerarDadosParaMovimentacao(conta, BigDecimal.valueOf(50)));
     }
 
 

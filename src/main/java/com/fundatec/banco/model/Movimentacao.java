@@ -2,7 +2,6 @@ package com.fundatec.banco.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fundatec.banco.model.contas.Conta;
 import com.fundatec.banco.model.enums.TipoOperacao;
 import lombok.*;
 

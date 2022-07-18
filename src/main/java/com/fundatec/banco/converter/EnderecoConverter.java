@@ -1,11 +1,11 @@
 package com.fundatec.banco.converter;
 
-import com.fundatec.banco.dto.EnderecoDto;
+import com.fundatec.banco.dto.responseDtos.EnderecoResponseDto;
 import com.fundatec.banco.model.Endereco;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface EnderecoConverter<M extends Endereco, R extends EnderecoDto>{
+public interface EnderecoConverter<M extends Endereco, R extends EnderecoResponseDto>{
 
     R convert(M endereco);
 }

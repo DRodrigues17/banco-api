@@ -2,8 +2,7 @@ package com.fundatec.banco.service;
 
 import com.fundatec.banco.exception.NaoPermitidoException;
 import com.fundatec.banco.model.Movimentacao;
-import com.fundatec.banco.model.contas.Conta;
-import com.fundatec.banco.model.enums.TipoOperacao;
+import com.fundatec.banco.model.Conta;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,39 +17,66 @@ public class CaixaAutomaticoService {
     private final MovimentacaoService service;
 
     public BigDecimal consultarSaldo(Conta conta) {
-        if(!conta.checarStatus(conta.getStatus())) {
-            throw new NaoPermitidoException("sua conta está inativa");
+        if(!conta.checarStatus(conta.getStatus())){
+            throw new NaoPermitidoException("a conta em questão está inativa");
         }
         return conta.getSaldo();
     }
 
     public List<Movimentacao> consultarExtrato(Conta conta) {
-        if(!conta.checarStatus(conta.getStatus())) {
-            throw new NaoPermitidoException("sua conta está inativa");
+        if(!conta.checarStatus(conta.getStatus())){
+            throw new NaoPermitidoException("a conta em questão está inativa");
         }
         return conta.getMovimentacoes();
     }
 
     public void depositar(Conta conta, BigDecimal valor) {
-        if(!conta.checarStatus(conta.getStatus())) {
-            throw new NaoPermitidoException("sua conta está inativa");
+        if(!conta.checarStatus(conta.getStatus())){
+            throw new NaoPermitidoException("a conta em questão está inativa");
         }
-        conta.depositar(valor);
-        conta.adcionarMovimentacao(conta, TipoOperacao.DEPOSITO, valor, LocalDateTime.now());
+        Movimentacao novaMovimentacao = gerarDadosParaMovimentacao(conta, valor);
+        BigDecimal saldo = conta.getSaldo();
+        conta.setSaldo(saldo.add(valor));
+        addMovimentacao(novaMovimentacao);
     }
 
     public void sacar(Conta conta, BigDecimal valor) {
-        if(!conta.checarStatus(conta.getStatus())) {
-            throw new NaoPermitidoException("sua conta está inativa");
+        if(!conta.checarStatus(conta.getStatus())){
+            throw new NaoPermitidoException("a conta em questão está inativa");
         }
-        conta.sacar(valor);
-        conta.adcionarMovimentacao(conta, TipoOperacao.SAQUE, valor, LocalDateTime.now());
+        Movimentacao novaMovimentacao = gerarDadosParaMovimentacao(conta, valor);
+        BigDecimal saldo = conta.getSaldo();
+        conta.setSaldo(saldo.subtract(valor));
+        addMovimentacao(novaMovimentacao);
     }
 
-    public void transferir(Conta contaOrigem, Conta contaDestino, BigDecimal valor) {
+    public void addMovimentacao(Movimentacao novaMovimentacao) {
+        service.saveMovimentacao(Movimentacao.builder()
+                .id(novaMovimentacao.getId())
+                .contaAcesso(novaMovimentacao.getContaAcesso())
+                .valor(novaMovimentacao.getValor())
+                .dataMovimentacao(novaMovimentacao.getDataMovimentacao())
+                .build());
+    }
+
+    public Movimentacao transferir(Conta contaOrigem, Conta contaDestino, BigDecimal valor) {
+        Movimentacao novaMovimentacao = gerarDadosParaMovimentacao(contaOrigem,valor);
         contaOrigem.sacar(valor);
-        contaOrigem.adcionarMovimentacao(contaOrigem, TipoOperacao.SAQUE, valor, LocalDateTime.now());
         contaDestino.depositar(valor);
-        contaDestino.adcionarMovimentacao(contaDestino, TipoOperacao.DEPOSITO, valor, LocalDateTime.now());
+        return service.saveMovimentacao(Movimentacao
+                .builder()
+                .id(novaMovimentacao.getId())
+                .valor(novaMovimentacao.getValor())
+                .contaAcesso(novaMovimentacao.getContaAcesso())
+                .dataMovimentacao(novaMovimentacao.getDataMovimentacao())
+                .build());
+    }
+
+    public Movimentacao gerarDadosParaMovimentacao(Conta conta, BigDecimal valor){
+        Movimentacao movimentacao = new Movimentacao();
+        movimentacao.setValor(valor);
+        movimentacao.setContaAcesso(conta);
+        movimentacao.setDataMovimentacao(LocalDateTime.now());
+        return movimentacao;
     }
 }

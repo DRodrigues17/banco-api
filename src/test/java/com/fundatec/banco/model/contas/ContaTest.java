@@ -1,13 +1,12 @@
 package com.fundatec.banco.model.contas;
 
-import com.fundatec.banco.model.Movimentacao;
+import com.fundatec.banco.model.Conta;
 import com.fundatec.banco.model.enums.StatusConta;
-import com.fundatec.banco.model.enums.TipoOperacao;
+import com.fundatec.banco.model.enums.TipoConta;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,22 +18,8 @@ class ContaTest {
 
     @BeforeEach
     void init() {
-        conta = new Conta() {
-            @Override
-            public void depositar(BigDecimal valor) {
-                super.depositar(valor);
-            }
-
-            @Override
-            public void sacar(BigDecimal valor) throws RuntimeException {
-                super.sacar(valor);
-            }
-
-            @Override
-            public boolean checarStatus(StatusConta status) throws RuntimeException {
-                return super.checarStatus(status);
-            }
-        };
+        conta = new Conta(1, "12345678",null, BigDecimal.valueOf(0), StatusConta.ATIVA,
+                "cloud", TipoConta.SIMPLES, null );
     }
 
     @Test
@@ -118,14 +103,5 @@ class ContaTest {
         conta.setStatus(StatusConta.INATIVA);
         assertFalse(conta.checarStatus(conta.getStatus()));
         logger.info(conta.getStatus().toString());
-    }
-
-    @Test
-    void deveAdcionarMovimentacao(){
-        logger.info(conta.getMovimentacoes().toString());
-        conta.adcionarMovimentacao(conta, TipoOperacao.DEPOSITO, BigDecimal.valueOf(50), LocalDateTime.now());
-        conta.adcionarMovimentacao(conta, TipoOperacao.SAQUE, BigDecimal.valueOf(50), LocalDateTime.now());
-        logger.info(conta.getMovimentacoes().toString());
-        assertNotNull(conta.getMovimentacoes());
     }
 }

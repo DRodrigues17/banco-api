@@ -1,22 +1,23 @@
-package com.fundatec.banco.dto;
+package com.fundatec.banco.dto.responseDtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fundatec.banco.model.enums.Uf;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Builder
 @Data
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MovimentacaoDto {
+public class EnderecoResponseDto {
+
 
     private Integer id;
-    private BigDecimal valor;
-    private LocalDateTime dataMovimentacao;
+    private String logradouro;
+    private String bairro;
+    private String cidade;
+    private Uf uf;
 }

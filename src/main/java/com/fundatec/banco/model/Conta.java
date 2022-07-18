@@ -1,33 +1,26 @@
-package com.fundatec.banco.model.contas;
+package com.fundatec.banco.model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.model.enums.StatusConta;
-import com.fundatec.banco.model.enums.TipoOperacao;
+import com.fundatec.banco.model.enums.TipoConta;
 import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
 @Entity
 @Getter
 @Setter
+@Builder
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = ContaSimples.class, name = "conta_simples"),
-        @JsonSubTypes.Type(value = ContaEspecial.class, name = "conta_especial"),
-        @JsonSubTypes.Type(value = ContaPoupanca.class, name = "conta_poupanca")
-})
-public abstract class Conta {
+public class Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,21 +34,24 @@ public abstract class Conta {
     @JsonBackReference(value = "banco_conta")
     @JoinColumn(name = "banco_id", referencedColumnName = "banco_id")
     private Banco banco;
-
     @Column(name = "saldo")
-    private BigDecimal saldo = BigDecimal.ZERO;
+    private BigDecimal saldo;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StatusConta status;
 
     @Column(name = "senha")
     private String senhaAcesso;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_conta")
+    private TipoConta tipoConta;
+
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaAcesso")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaAcesso")
     @JsonManagedReference
     private List<Movimentacao> movimentacoes;
-
     public boolean checarStatus(StatusConta status){
         if (StatusConta.INATIVA == getStatus()) {
             return false;
@@ -83,8 +79,4 @@ public abstract class Conta {
         }
     }
 
-    public void adcionarMovimentacao(Conta conta, TipoOperacao tipoOperacao, BigDecimal valor, LocalDateTime timestamp) {
-        Movimentacao movimentacao = new Movimentacao(conta, tipoOperacao, valor, timestamp);
-        movimentacoes.add(movimentacao);
-    }
 }

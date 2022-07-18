@@ -1,10 +1,13 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.ClienteResponseConverter;
-import com.fundatec.banco.dto.ClienteDto;
-import com.fundatec.banco.model.pessoas.Cliente;
+import com.fundatec.banco.converter.Implementations.ClienteConverterImpl;
+import com.fundatec.banco.dto.requestDtos.ClienteRequestDto;
+import com.fundatec.banco.dto.responseDtos.ClienteResponseDto;
+import com.fundatec.banco.model.Cliente;
 import com.fundatec.banco.service.GerenciamentoClienteService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,41 +16,38 @@ import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/v1/clientes")
+@AllArgsConstructor
 public class GerenciamentoClienteController {
     @Autowired
     private final GerenciamentoClienteService service;
-    public GerenciamentoClienteController(GerenciamentoClienteService clienteService, ClienteResponseConverter converter) {this.service = clienteService;
-        this.converter = converter;
-    }
     @Autowired
-    private final ClienteResponseConverter converter;
+    private final ClienteConverterImpl converter;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteDto> findClienteById(@PathVariable Integer id){
+    @ResponseStatus(HttpStatus.FOUND)
+    public ResponseEntity<ClienteResponseDto> findClienteById(@PathVariable("id") Integer id){
         Cliente cliente = service.findById(id);
         return ResponseEntity.ok(converter.convert(cliente));
     }
 
     @GetMapping
-    public ResponseEntity<List<ClienteDto>> findAll(){
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<ClienteResponseDto>> findAll(){
         Iterable<Cliente> cliente = service.findAll();
-        List<ClienteDto> clienteDto = StreamSupport.stream(cliente.spliterator(), false)
+        List<ClienteResponseDto> clienteResponseDto = StreamSupport.stream(cliente.spliterator(), false)
                 .map(converter::convert)
                 .toList();
-        return ResponseEntity.ok(clienteDto);
-    }
-
-    @PutMapping
-    public ResponseEntity<ClienteDto> newCliente(@RequestBody Cliente cliente) {
-        Cliente clienteDto = service.saveCliente(cliente);
-        return ResponseEntity.ok(converter.convert(clienteDto));
+        return ResponseEntity.ok(clienteResponseDto);
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> criarNovoBanco(@RequestBody Cliente cliente){
-        return ResponseEntity.ok(service.saveCliente(cliente));
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<ClienteResponseDto> criarCliente(@RequestBody ClienteRequestDto clienteRequestDto) {
+        Cliente cliente =service.criarNovoCliente(converter.convert(clienteRequestDto),clienteRequestDto.getIdEndereco());
+        return ResponseEntity.status(HttpStatus.CREATED).body(converter.convert(cliente));
     }
 
     @DeleteMapping("{id}")
-    public void deleteBancoById(@PathVariable Integer id){service.deleteById(id);}
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBancoById(@PathVariable("id") Integer id){service.deleteById(id);}
 }
