@@ -1,13 +1,9 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.EnderecoConverter;
-import com.fundatec.banco.converter.Implementations.EnderecoConverterImpl;
-import com.fundatec.banco.dto.responseDtos.BancoResponseDto;
-import com.fundatec.banco.dto.responseDtos.EnderecoResponseDto;
-import com.fundatec.banco.model.Banco;
+import com.fundatec.banco.converter.Impl.EnderecoConverterImpl;
+import com.fundatec.banco.dto.response.EnderecoResponseDto;
 import com.fundatec.banco.model.Endereco;
 import com.fundatec.banco.service.EnderecoService;
-import com.fundatec.banco.service.GerenciamentoBancoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

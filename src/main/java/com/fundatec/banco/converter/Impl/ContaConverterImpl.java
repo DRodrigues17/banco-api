@@ -1,9 +1,9 @@
-package com.fundatec.banco.converter.Implementations;
+package com.fundatec.banco.converter.Impl;
 
 import com.fundatec.banco.converter.ContaConverter;
-import com.fundatec.banco.dto.requestDtos.ContaRequestDto;
-import com.fundatec.banco.dto.responseDtos.BancoResponseDto;
-import com.fundatec.banco.dto.responseDtos.ContaResponseDto;
+import com.fundatec.banco.dto.request.ContaRequestDto;
+import com.fundatec.banco.dto.response.BancoResponseDto;
+import com.fundatec.banco.dto.response.ContaResponseDto;
 import com.fundatec.banco.model.Conta;
 import org.springframework.stereotype.Component;
 

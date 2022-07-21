@@ -1,6 +1,6 @@
 package com.fundatec.banco.service;
 
-import com.fundatec.banco.exception.NaoPermitidoException;
+import com.fundatec.banco.exception.NotAllowedException;
 import com.fundatec.banco.model.Conta;
 import com.fundatec.banco.model.enums.StatusConta;
 import com.fundatec.banco.model.enums.TipoConta;
@@ -17,22 +17,25 @@ import static org.junit.jupiter.api.Assertions.*;
 class CaixaAutomaticoServiceTest {
 
     private Conta conta;
-    private static Logger logger = Logger.getLogger(Conta.class.getName());
+    private static final Logger logger = Logger.getLogger(Conta.class.getName());
 
     private MovimentacaoService service;
-    private CaixaAutomaticoService automaticoService = new CaixaAutomaticoService(service);
+    private final CaixaAutomaticoService automaticoService = new CaixaAutomaticoService(service);
 
     @BeforeAll
     void init(){
         conta = new Conta(1, "12345678",null, BigDecimal.valueOf(0), StatusConta.ATIVA,
                 "cloud", TipoConta.SIMPLES, null );
 
+        //service = new MovimentacaoService();
+    }
+
+    private void gerarMovimentacao(){
         automaticoService.addMovimentacao(automaticoService.gerarDadosParaMovimentacao(conta, BigDecimal.valueOf(60)));
         automaticoService.addMovimentacao(automaticoService.gerarDadosParaMovimentacao(conta, BigDecimal.valueOf(35)));
         automaticoService.addMovimentacao(automaticoService.gerarDadosParaMovimentacao(conta, BigDecimal.valueOf(70)));
         automaticoService.addMovimentacao(automaticoService.gerarDadosParaMovimentacao(conta, BigDecimal.valueOf(50)));
     }
-
 
 
     @Test
@@ -44,11 +47,12 @@ class CaixaAutomaticoServiceTest {
     @Test
     void deveDarErroAoConsultarSaldoPoisContaInativa() {
         conta.setStatus(StatusConta.INATIVA);
-        assertThrows(NaoPermitidoException.class, () -> automaticoService.consultarSaldo(conta));
+        assertThrows(NotAllowedException.class, () -> automaticoService.consultarSaldo(conta));
     }
 
     @Test
     void deveConsultarExtrato() {
+        gerarMovimentacao();
         conta.setStatus(StatusConta.ATIVA);
         logger.info(conta.getMovimentacoes().toString());
         assertEquals(conta.getMovimentacoes(),automaticoService.consultarExtrato(conta));
@@ -57,7 +61,7 @@ class CaixaAutomaticoServiceTest {
     @Test
     void deveDarErroAoConsultarExtratoPoisContaInativa() {
         conta.setStatus(StatusConta.INATIVA);
-        assertThrows(NaoPermitidoException.class, () -> automaticoService.consultarExtrato(conta));
+        assertThrows(NotAllowedException.class, () -> automaticoService.consultarExtrato(conta));
     }
 
 }

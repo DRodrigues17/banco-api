@@ -1,5 +1,6 @@
 package com.fundatec.banco.service;
 
+import com.fundatec.banco.exception.ObjectNotFoundException;
 import com.fundatec.banco.model.Banco;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.model.Conta;
@@ -25,10 +26,13 @@ public class MovimentacaoService {
     }
 
     public Movimentacao findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException(("Movimentação não encontrada")));
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Movimentação"));
     }
 
     public List<Movimentacao> findAllMovimentacoes() {
+        if(repository.findAll().isEmpty()){
+            throw new ObjectNotFoundException("nenhuma movimentação, o banco de dados está vazio");
+        }
         return repository.findAll();
     }
 
@@ -41,9 +45,8 @@ public class MovimentacaoService {
     }
 
     public List<Movimentacao> verificarMovimentacoesPorConta(Integer idBanco, Integer idConta) {
-        Banco banco = bancoRepository.findById(idBanco).orElseThrow(() -> new RuntimeException(("Banco não encontrado")));
+        Banco banco = bancoRepository.findById(idBanco).orElseThrow(() -> new ObjectNotFoundException("Banco não encontrado"));
         Conta conta = bancoService.getContaById(banco, idConta);
-        List<Movimentacao> movimentacoes = conta.getMovimentacoes();
-        return movimentacoes;
+        return conta.getMovimentacoes();
     }
 }

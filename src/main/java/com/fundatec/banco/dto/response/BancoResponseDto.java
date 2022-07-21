@@ -1,4 +1,4 @@
-package com.fundatec.banco.dto.responseDtos;
+package com.fundatec.banco.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

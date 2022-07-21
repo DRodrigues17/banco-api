@@ -4,67 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcf22a6d-ba5e-488b-a7a3-96e2d8cbd982" name="Changes" comment="testes-parte1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/EnderecoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/ClienteConverterImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/ContaConverterImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/EnderecoConverterImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/MovimentacaoConverterImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/requestDtos/ClienteRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/requestDtos/ContaRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/BancoResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/ClienteResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/ContaResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/EnderecoResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/MovimentacaoResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Cliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/enums/TipoConta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/repository/EnderecoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/EnderecoService.java" afterDir="false" />
+    <list default="true" id="bcf22a6d-ba5e-488b-a7a3-96e2d8cbd982" name="Changes" comment="projeto 90% finalizado, faltando somente os testes via swagger por incapacidade mecânica">
+      <change afterPath="$PROJECT_DIR$/info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/CaixaAutomaticoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/CaixaAutomaticoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/EnderecoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/EnderecoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/GerenciamentoAdmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/GerenciamentoAdmController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/GerenciamentoBancoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/GerenciamentoBancoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/GerenciamentoClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/GerenciamentoClienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/GerenciamentoContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/GerenciamentoContaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/MovimentacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/controller/MovimentacaoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/BancoConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/BancoConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/BancoRequestConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/BancoConverterImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/ClienteConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/ClienteConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/ClienteResponseConverter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/ContaConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/ContaConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/ContaResponseConverter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/EnderecoConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/EnderecoConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/EnderecoResponseConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/BancoConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Impl/BancoConverterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/ClienteConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Impl/ClienteConverterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/ContaConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Impl/ContaConverterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/EnderecoConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Impl/EnderecoConverterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Implementations/MovimentacaoConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/Impl/MovimentacaoConverterImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/MovimentacaoConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/MovimentacaoConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/converter/MovimentacaoResponseConverter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/BancoDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/ClienteDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/ContaDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/EnderecoDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/MovimentacaoDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ConflitoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ConflitoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/DadosErradosException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/DadosErradosException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ImpossivelCriarException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ImpossivelCriarException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ObjetoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ObjetoNaoEncontradoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Banco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Banco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Endereco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Movimentacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Movimentacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/contas/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Conta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/contas/ContaEspecial.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/contas/ContaPoupanca.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/contas/ContaSimples.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/pessoas/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/pessoas/Fornecedor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/pessoas/PessoaFisica.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/pessoas/Profissional.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/repository/GerenciamentoContaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/repository/GerenciamentoContaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/requestDtos/ClienteRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/request/ClienteRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/requestDtos/ContaRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/request/ContaRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/BancoResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/response/BancoResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/ClienteResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/response/ClienteResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/ContaResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/response/ContaResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/EnderecoResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/response/EnderecoResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/responseDtos/MovimentacaoResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/dto/response/MovimentacaoResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ConflitoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ConflictException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/DadosErradosException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ExceptionHandlerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ExceptionHandlerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ImpossivelCriarException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/NaoPermitidoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/NotAllowedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ObjetoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/exception/ObjectNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/Conta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/enums/TipoConta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/model/enums/TipoConta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/repository/GerenciamentoClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/repository/GerenciamentoClienteRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/CaixaAutomaticoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/CaixaAutomaticoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/EnderecoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/EnderecoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/GerenciamentoAdmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/GerenciamentoAdmService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/GerenciamentoBancoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/GerenciamentoBancoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/GerenciamentoClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/GerenciamentoClienteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/GerenciamentoContaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/GerenciamentoContaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/MovimentacaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fundatec/banco/service/MovimentacaoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/fundatec/banco/model/contas/ContaEspecialTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/fundatec/banco/model/contas/ContaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/fundatec/banco/model/contas/ContaTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/fundatec/banco/service/CaixaAutomaticoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/fundatec/banco/service/CaixaAutomaticoServiceTest.java" afterDir="false" />
     </list>
@@ -123,15 +114,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="exception_httpStatus" />
-                    <option name="lastUsedInstant" value="1657997052" />
+                    <option name="lastUsedInstant" value="1658337734" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
                     <option name="lastUsedInstant" value="1657994398" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="projeto_refeito" />
-                    <option name="lastUsedInstant" value="1657913709" />
                   </RecentBranch>
                 </list>
               </option>
@@ -165,12 +152,28 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dlar-\Downloads\banco-api" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.fundatec.banco.model.contas" />
       <recent name="com.fundatec.banco.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CaixaAutomaticoServiceTest (1)">
+  <component name="RunManager" selected="Application.BancoApplication">
+    <configuration name="BancoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fundatec.banco.BancoApplication" />
+      <module name="banco.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fundatec.banco.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CaixaAutomaticoServiceTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -194,7 +197,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="CaixaAutomaticoServiceTest.deveConsultarExtrato" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CaixaAutomaticoServiceTest.deveConsultarExtrato (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -240,7 +243,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ContaTest.deveAdcionarMovimentacao (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ContaTest.deveGerarrendimento" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -253,30 +256,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.fundatec.banco.model.contas.ContaTest.deveAdcionarMovimentacao&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ContaTest.deveRetornarFalseAoChecarContaPoisContaInativa" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.fundatec.banco.model.contas.ContaTest.deveRetornarFalseAoChecarContaPoisContaInativa&quot;" />
+            <option value="&quot;com.fundatec.banco.model.contas.ContaTest.deveGerarrendimento&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -301,11 +281,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.CaixaAutomaticoServiceTest (1)" />
+        <item itemvalue="Gradle.ContaTest.deveGerarrendimento" />
         <item itemvalue="Gradle.ContaTest" />
-        <item itemvalue="Gradle.CaixaAutomaticoServiceTest.deveConsultarExtrato" />
-        <item itemvalue="Gradle.ContaTest.deveAdcionarMovimentacao (1)" />
-        <item itemvalue="Gradle.ContaTest.deveRetornarFalseAoChecarContaPoisContaInativa" />
+        <item itemvalue="Application.BancoApplication" />
+        <item itemvalue="Gradle.CaixaAutomaticoServiceTest.deveConsultarExtrato (1)" />
+        <item itemvalue="Gradle.CaixaAutomaticoServiceTest (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -332,8 +312,18 @@
       <option name="project" value="LOCAL" />
       <updated>1658030508980</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="sincronizando com versão funcional">
+      <created>1658187615362</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658187615362</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.sql" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -346,7 +336,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="projeto_refeito" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -377,6 +367,8 @@
     <MESSAGE value="exceptions criadas" />
     <MESSAGE value="rebase" />
     <MESSAGE value="testes-parte1" />
-    <option name="LAST_COMMIT_MESSAGE" value="testes-parte1" />
+    <MESSAGE value="sincronizando com versão funcional" />
+    <MESSAGE value="projeto 90% finalizado, faltando somente os testes via swagger por incapacidade mecânica" />
+    <option name="LAST_COMMIT_MESSAGE" value="projeto 90% finalizado, faltando somente os testes via swagger por incapacidade mecânica" />
   </component>
 </project>

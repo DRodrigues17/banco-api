@@ -1,16 +1,13 @@
-package com.fundatec.banco.dto.requestDtos;
+package com.fundatec.banco.dto.request;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fundatec.banco.dto.responseDtos.EnderecoResponseDto;
-import com.fundatec.banco.model.Endereco;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Builder

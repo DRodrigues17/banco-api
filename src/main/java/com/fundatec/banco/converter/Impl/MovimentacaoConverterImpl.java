@@ -1,7 +1,7 @@
-package com.fundatec.banco.converter.Implementations;
+package com.fundatec.banco.converter.Impl;
 
 import com.fundatec.banco.converter.MovimentacaoConverter;
-import com.fundatec.banco.dto.responseDtos.MovimentacaoResponseDto;
+import com.fundatec.banco.dto.response.MovimentacaoResponseDto;
 import com.fundatec.banco.model.Movimentacao;
 import org.springframework.stereotype.Component;
 

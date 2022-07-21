@@ -1,4 +1,4 @@
-package com.fundatec.banco.dto.requestDtos;
+package com.fundatec.banco.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fundatec.banco.model.enums.TipoConta;

@@ -1,5 +1,6 @@
 package com.fundatec.banco.model.contas;
 
+import com.fundatec.banco.exception.NotAllowedException;
 import com.fundatec.banco.model.Conta;
 import com.fundatec.banco.model.enums.StatusConta;
 import com.fundatec.banco.model.enums.TipoConta;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ContaTest {
 
     private Conta conta;
-    private static Logger logger = Logger.getLogger(Conta.class.getName());
+    private static final Logger logger = Logger.getLogger(Conta.class.getName());
 
     @BeforeEach
     void init() {
@@ -58,7 +59,7 @@ class ContaTest {
     void deveDarErroAoSacarValorMaiorQueSaldo() {
         conta.depositar(BigDecimal.valueOf(20));
         logger.info(conta.getSaldo().toString());
-        assertThrows(RuntimeException.class, () -> conta.sacar(BigDecimal.valueOf(777)));
+        assertThrows(NotAllowedException.class, () -> conta.sacar(BigDecimal.valueOf(777)));
         logger.info(conta.getSaldo().toString());
     }
 
@@ -79,7 +80,7 @@ class ContaTest {
     @Test
     void deveDarErroAoSacarPoisSaldoNulo() {
         logger.info(conta.getSaldo().toString());
-        assertThrows(RuntimeException.class, () -> conta.sacar(BigDecimal.ONE));
+        assertThrows(NotAllowedException.class, () -> conta.sacar(BigDecimal.ONE));
         logger.info(conta.getSaldo().toString());
     }
 

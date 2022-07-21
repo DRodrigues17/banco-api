@@ -1,7 +1,7 @@
-package com.fundatec.banco.converter.Implementations;
+package com.fundatec.banco.converter.Impl;
 
 import com.fundatec.banco.converter.EnderecoConverter;
-import com.fundatec.banco.dto.responseDtos.EnderecoResponseDto;
+import com.fundatec.banco.dto.response.EnderecoResponseDto;
 import com.fundatec.banco.model.Endereco;
 import org.springframework.stereotype.Component;
 

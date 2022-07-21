@@ -4,7 +4,6 @@ package com.fundatec.banco.controller;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.model.Conta;
 import com.fundatec.banco.service.CaixaAutomaticoService;
-import com.fundatec.banco.service.GerenciamentoClienteService;
 import com.fundatec.banco.service.GerenciamentoContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,14 +19,12 @@ public class CaixaAutomaticoController {
 
     private final CaixaAutomaticoService service;
     private final GerenciamentoContaService contaService;
-    private final GerenciamentoClienteService clienteService;
 
 
     @Autowired
-    public CaixaAutomaticoController(CaixaAutomaticoService service, GerenciamentoContaService contaService, GerenciamentoClienteService clienteService) {
+    public CaixaAutomaticoController(CaixaAutomaticoService service, GerenciamentoContaService contaService) {
         this.service = service;
         this.contaService = contaService;
-        this.clienteService = clienteService;
     }
 
     @GetMapping("/saldo/{cpf}")

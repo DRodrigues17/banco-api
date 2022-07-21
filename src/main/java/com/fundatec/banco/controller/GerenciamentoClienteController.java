@@ -1,8 +1,8 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.Implementations.ClienteConverterImpl;
-import com.fundatec.banco.dto.requestDtos.ClienteRequestDto;
-import com.fundatec.banco.dto.responseDtos.ClienteResponseDto;
+import com.fundatec.banco.converter.Impl.ClienteConverterImpl;
+import com.fundatec.banco.dto.request.ClienteRequestDto;
+import com.fundatec.banco.dto.response.ClienteResponseDto;
 import com.fundatec.banco.model.Cliente;
 import com.fundatec.banco.service.GerenciamentoClienteService;
 import lombok.AllArgsConstructor;

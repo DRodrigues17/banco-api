@@ -10,29 +10,18 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {
 
-    @ExceptionHandler(ConflitoException.class)
-    public ResponseEntity<ApiErrorDTO> handleConflictException(ConflitoException e) {
+    @ExceptionHandler(ConflictException.class)
+    public ResponseEntity<ApiErrorDTO> handleConflictException(ConflictException e) {
         return new ResponseEntity<>(new ApiErrorDTO(e.getMessage(), LocalDateTime.now()), HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(DadosErradosException.class)
-    public ResponseEntity<ApiErrorDTO> handleWrongDataException(DadosErradosException e) {
-        return new ResponseEntity<>(new ApiErrorDTO(e.getMessage(), LocalDateTime.now()), HttpStatus.NO_CONTENT);
-    }
-
-    @ExceptionHandler(ImpossivelCriarException.class)
-    public ResponseEntity<ApiErrorDTO> handleUncreatable(ImpossivelCriarException e) {
-        return new ResponseEntity<>(new ApiErrorDTO(e.getMessage(), LocalDateTime.now()), HttpStatus.NOT_ACCEPTABLE);
-    }
-
-
-    @ExceptionHandler(ObjetoNaoEncontradoException.class)
-    public ResponseEntity<ApiErrorDTO> handleMethodNotAllowed(NaoPermitidoException e) {
+    @ExceptionHandler(NotAllowedException.class)
+    public ResponseEntity<ApiErrorDTO> handleMethodNotAllowed(NotAllowedException e) {
         return new ResponseEntity<>(new ApiErrorDTO(e.getMessage(), LocalDateTime.now()), HttpStatus.METHOD_NOT_ALLOWED);
     }
 
-    @ExceptionHandler(ObjetoNaoEncontradoException.class)
-    public ResponseEntity<ApiErrorDTO> handleNofFound(ObjetoNaoEncontradoException e) {
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity<ApiErrorDTO> handleNofFound(ObjectNotFoundException e) {
         return new ResponseEntity<>(new ApiErrorDTO(e.getMessage(), LocalDateTime.now()), HttpStatus.NOT_FOUND);
     }
 

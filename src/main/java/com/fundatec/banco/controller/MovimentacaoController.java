@@ -1,7 +1,7 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.Implementations.MovimentacaoConverterImpl;
-import com.fundatec.banco.dto.responseDtos.MovimentacaoResponseDto;
+import com.fundatec.banco.converter.Impl.MovimentacaoConverterImpl;
+import com.fundatec.banco.dto.response.MovimentacaoResponseDto;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.service.MovimentacaoService;
 import lombok.RequiredArgsConstructor;

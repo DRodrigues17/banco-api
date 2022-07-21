@@ -1,9 +1,9 @@
 package com.fundatec.banco.controller;
 
-import com.fundatec.banco.converter.Implementations.ClienteConverterImpl;
-import com.fundatec.banco.converter.Implementations.ContaConverterImpl;
-import com.fundatec.banco.dto.responseDtos.ClienteResponseDto;
-import com.fundatec.banco.dto.responseDtos.ContaResponseDto;
+import com.fundatec.banco.converter.Impl.ClienteConverterImpl;
+import com.fundatec.banco.converter.Impl.ContaConverterImpl;
+import com.fundatec.banco.dto.response.ClienteResponseDto;
+import com.fundatec.banco.dto.response.ContaResponseDto;
 import com.fundatec.banco.model.Conta;
 import com.fundatec.banco.model.Cliente;
 import com.fundatec.banco.service.GerenciamentoAdmService;
@@ -50,5 +50,10 @@ public class GerenciamentoAdmController {
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
-//TODO patch tipo conta
+    @PatchMapping("/contas/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ContaResponseDto> alterarTipoConta(@PathVariable("id") Integer id, @RequestBody Conta conta){
+        admService.alterarTipoConta(id, conta);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
 }

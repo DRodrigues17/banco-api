@@ -1,9 +1,9 @@
 package com.fundatec.banco.controller;
 
 
-import com.fundatec.banco.converter.Implementations.ContaConverterImpl;
-import com.fundatec.banco.dto.requestDtos.ContaRequestDto;
-import com.fundatec.banco.dto.responseDtos.ContaResponseDto;
+import com.fundatec.banco.converter.Impl.ContaConverterImpl;
+import com.fundatec.banco.dto.request.ContaRequestDto;
+import com.fundatec.banco.dto.response.ContaResponseDto;
 import com.fundatec.banco.model.Conta;
 import com.fundatec.banco.service.GerenciamentoContaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,13 +52,13 @@ public class GerenciamentoContaController {
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ContaResponseDto> ModificarStatusConta(@PathVariable("id") Integer id){
+    public ResponseEntity<ContaResponseDto> modificarStatusConta(@PathVariable("id") Integer id){
         return ResponseEntity.ok(converter.convert(service.alterarStatus(id)));
     }
 
     @PatchMapping("/{idConta}/clientes/{idCliente}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ContaResponseDto> VincularTiularDaConta(@PathVariable("idConta") Integer idConta,
+    public ResponseEntity<ContaResponseDto> vincularTiularDaConta(@PathVariable("idConta") Integer idConta,
                                                                   @PathVariable("idCliente") Integer idCliente){
         return ResponseEntity.ok(converter.convert(service.setTitular(idConta,idCliente)));
     }

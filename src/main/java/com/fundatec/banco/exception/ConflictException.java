@@ -1,13 +1,13 @@
 package com.fundatec.banco.exception;
 
-public class ConflitoException extends RuntimeException {
+public class ConflictException extends RuntimeException {
 
-    public ConflitoException(String message) {
+    public ConflictException(String message) {
         super("impossivel criar, pois tal "+message+" entra em conflito com um já existente," +
                 "reveja as informações");
     }
 
-    public ConflitoException(String message, Throwable cause) {
+    public ConflictException(String message, Throwable cause) {
         super(message, cause);
     }
 }

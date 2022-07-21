@@ -1,7 +1,6 @@
 package com.fundatec.banco.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fundatec.banco.model.Endereco;
 import lombok.*;
 
 import javax.persistence.*;

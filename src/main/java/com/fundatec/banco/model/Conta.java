@@ -1,16 +1,17 @@
 package com.fundatec.banco.model;
 
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fundatec.banco.model.Banco;
-import com.fundatec.banco.model.Movimentacao;
+import com.fundatec.banco.exception.NotAllowedException;
 import com.fundatec.banco.model.enums.StatusConta;
 import com.fundatec.banco.model.enums.TipoConta;
 import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 
 @Entity
@@ -52,11 +53,23 @@ public class Conta {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaAcesso")
     @JsonManagedReference
     private List<Movimentacao> movimentacoes;
+
+    @Column
+    LocalDate dataUltimaMovimentacao;
+
+    public Conta(Integer id, String cpfTitular, Banco banco, BigDecimal saldo, StatusConta status, String senhaAcesso, TipoConta tipoConta, List<Movimentacao> movimentacoes) {
+        this.id = id;
+        this.cpfTitular = cpfTitular;
+        this.banco = banco;
+        this.saldo = saldo;
+        this.status = status;
+        this.senhaAcesso = senhaAcesso;
+        this.tipoConta = tipoConta;
+        this.movimentacoes = movimentacoes;
+    }
+
     public boolean checarStatus(StatusConta status){
-        if (StatusConta.INATIVA == getStatus()) {
-            return false;
-        }
-        return true;
+        return StatusConta.INATIVA != status;
     }
 
     public void depositar(BigDecimal valor) {
@@ -70,13 +83,30 @@ public class Conta {
     public void sacar(BigDecimal valor) throws RuntimeException {
         if (valor == null || valor.compareTo(BigDecimal.ZERO) == 0 || valor.compareTo(BigDecimal.valueOf(0.0)) < 0) {
             throw new IllegalArgumentException("valor inválido, logo não pode ser sacado");
-        } else if (valor.compareTo(saldo) > 0) {
-            throw new RuntimeException("impossivel sacar um valor maior que seu saldo");
+        } else if (valor.compareTo(saldo) > 0 && !this.tipoConta.equals(TipoConta.ESPECIAL)) {
+            throw new NotAllowedException("o valor maior é que seu saldo");
         } else if (getSaldo().compareTo(BigDecimal.ZERO) == 0) {
-            throw new RuntimeException("impossivel sacar pois seu saldo está zerado");
+            throw new NotAllowedException("pois seu saldo está zerado");
         } else {
             saldo = saldo.subtract(valor);
         }
     }
+    public void gerarSaldoDiario(){
+        if(this.tipoConta.equals(TipoConta.POUPANCA)){
+            LocalDate dataMovimentacao = LocalDate.now();
+            long diferencaTempo = DAYS.between(dataMovimentacao, dataUltimaMovimentacao);
+            BigDecimal saldoAtual = this.saldo.multiply(BigDecimal.valueOf(this.tipoConta.getValor()));
+            saldo.add(saldoAtual.multiply(BigDecimal.valueOf(diferencaTempo)));
+            dataUltimaMovimentacao = dataMovimentacao;
+        }
+    }
+
+    @PrePersist
+    public void preInsert(){
+        if(this.dataUltimaMovimentacao == null){
+            this.dataUltimaMovimentacao = LocalDate.now();
+        }
+    }
+
 
 }

@@ -1,9 +1,9 @@
-package com.fundatec.banco.converter.Implementations;
+package com.fundatec.banco.converter.Impl;
 
 import com.fundatec.banco.converter.ClienteConverter;
-import com.fundatec.banco.dto.requestDtos.ClienteRequestDto;
-import com.fundatec.banco.dto.responseDtos.ClienteResponseDto;
-import com.fundatec.banco.dto.responseDtos.EnderecoResponseDto;
+import com.fundatec.banco.dto.request.ClienteRequestDto;
+import com.fundatec.banco.dto.response.ClienteResponseDto;
+import com.fundatec.banco.dto.response.EnderecoResponseDto;
 import com.fundatec.banco.model.Cliente;
 import org.springframework.stereotype.Component;
 
