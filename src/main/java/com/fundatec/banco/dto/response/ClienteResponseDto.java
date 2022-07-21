@@ -1,20 +1,24 @@
-package com.fundatec.banco.dto;
+package com.fundatec.banco.dto.response;
+
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Builder
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BancoDto {
+public class ClienteResponseDto {
 
     private Integer id;
     private String nome;
-    private String senha;
+    private String cpf;
+    private EnderecoResponseDto endereco;
+
 
 }

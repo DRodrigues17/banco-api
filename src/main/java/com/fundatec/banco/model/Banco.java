@@ -1,7 +1,7 @@
 package com.fundatec.banco.model;
 
-import com.fundatec.banco.model.contas.Conta;
-import com.fundatec.banco.model.pessoas.Cliente;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,11 +21,10 @@ public class Banco {
     @Column(name = "banco_id")
     private Integer id;
 
+    @JsonIgnore
+    @JsonManagedReference(value = "banco_conta")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
     private List<Conta> contas;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
-    private List<Cliente> clientes;
 
     @Column(name = "nome")
     private String nome;

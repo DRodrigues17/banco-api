@@ -1,11 +1,11 @@
 package com.fundatec.banco.converter;
 
-import com.fundatec.banco.dto.BancoDto;
+import com.fundatec.banco.dto.response.BancoResponseDto;
 import com.fundatec.banco.model.Banco;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface BancoConverter  <M extends BancoDto, R extends Banco> {
+public interface BancoConverter  <M extends Banco, R extends BancoResponseDto> {
 
-    R convert(M cliente);
+    R convert(M banco);
 }

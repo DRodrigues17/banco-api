@@ -1,21 +1,19 @@
-package com.fundatec.banco.model.pessoas;
-
+package com.fundatec.banco.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fundatec.banco.model.Endereco;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-
 @Entity
-@Data
+@Builder
 @Getter
+@Setter
 @Table(name = "tb_pessoa")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PessoaFisica {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +26,8 @@ public abstract class PessoaFisica {
     @Column(name = "CPF", length = 11, unique = true)
     private String cpf;
 
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id", referencedColumnName = "endereco_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco", referencedColumnName = "endereco_id")
     private Endereco endereco;
 
     @Column(name = "sexo")
@@ -39,8 +37,5 @@ public abstract class PessoaFisica {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
 
-    @Column(name = "data_cadastro")
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dataCadastro;
 
 }

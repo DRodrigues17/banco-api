@@ -1,24 +1,26 @@
-package com.fundatec.banco.dto;
+package com.fundatec.banco.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fundatec.banco.model.Banco;
-import com.fundatec.banco.model.Movimentacao;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Builder
+@Getter
+@Setter
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ContaDto {
+public class ContaResponseDto {
 
     private Integer id;
     private String cpfTitular;
-    private Banco banco;
-    private List<Movimentacao> movimentacaoList;
+    private BancoResponseDto banco;
+    private List<MovimentacaoResponseDto> movimentacaoList;
     private BigDecimal saldo;
 
 

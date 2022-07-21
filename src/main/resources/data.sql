@@ -1,16 +1,36 @@
-insert into tb_banco (id, contas, nome , clientes, senha)
-values(1, null, 'bancoso', null, '1234');
+DROP DATABASE PROJETO_LP1;
 
-----insert into tb_movimentacoes (id, cliente, contaOrigem,contaDestino,valor, dataMovimentacao)
-----values (1, 1, null, null, 20, '2001-03-20 12:00:00')
---
-insert into tb_conta(id,cfpTitular,saldo,status,senhaAcesso)
-values (1, null, 2000, 'INATIVA', '1234');
---
-insert into tb_endereco(id ,uf, logradouro, cidade, bairro) values (1 ,'RS','silva tavares', 'PortoAlegre','AssisBrasil');
---
---insert into tb_pessoa(id,nome, cpf, endereco, sexo, dataNascimento, dataCadastro)
---values(1, 'maico', '01664551229', 1, 'M','2000-03-20','2005-05-20');
---
-insert into tb_cliente(id,nome, cpf, endereco, sexo, dataNascimento, dataCadastro, profissao, conta, banco)
-values (1, 'maico', '01664551229', 1, 'M','2000-03-20','2005-05-20', 'massagista', 1, 1);
+CREATE DATABASE PROJETO_LP1;
+
+USE PROJETO_LP1;
+
+INSERT INTO TB_BANCO (nome, senha)
+	VALUES	('Banrisul', 'Banrisul'),
+			('Banco do Brasil ', 'Banco do Brasil'),
+			('Sicredi', 'Sicredi'),
+			('Unicred', 'Unicred'),
+			('Banco Inter', 'Banco Inter');
+
+INSERT INTO conta (cpf_titular,saldo,senha,status)
+VALUES 
+('01655489709', 5000, 'memes', 'ATIVA'),
+('01616489772', 10000, 'patos','INATIVA'),
+('02155489704', 2000, 'carros', 'ATIVA'),
+('01623789712', 10000, 'senhas', 'ATIVA'),
+('01697389752', 40000, 'passwords', 'ATIVA');
+
+INSERT INTO TB_ENDERECO (bairro, cidade, logradouro, uf)
+VALUES 
+('Passo da areia', 'Porto Alegre' ,'Rua Vinte e Nove, 194', 20),
+('Jardim são pedro', 'Porto Alegre',  'Rua Vinte e tres, 165', 20),
+('Belém Velho', 'Porto Alegre',  'Rua Vinte e quatro, 220', 20),
+('Cristal', 'Porto Alegre',  'Rua Vinte e cinco 3906', 20),
+('São Bento', 'Porto Alegre',  'Rua Vinte e seis 4040', 20);
+
+INSERT INTO tb_pessoa(cpf, data_nascimento, nome, sexo, endereco)
+VALUES
+('01655489709', '1996-07-20', 'Marques Marcos', 'MASCULINO',1),
+('01616489772', '2002-09-01', 'Viktor Villiam', 'MASCULINO',2),
+('02155489704', '1990-12-23', 'Carlos Eduardo', 'MASCULINO',3),
+('01623789712', '1968-03-10', 'Vladimir Pinto', 'MASCULINO',4),
+('01697389752', '1995-05-12', 'Johanna Baptista', 'FEMININO',5);

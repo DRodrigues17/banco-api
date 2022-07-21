@@ -1,7 +1,7 @@
 package com.fundatec.banco.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fundatec.banco.model.enums.Uf;
-import com.fundatec.banco.model.pessoas.PessoaFisica;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,7 +34,7 @@ public class Endereco {
     private String bairro;
 
     @OneToOne
-    @MapsId("pessoa_id")
-    @JoinColumn(name = "pessoa_id",referencedColumnName = "pessoa_id")
-    private PessoaFisica cliente;
+    @JsonIgnore
+    @JoinColumn(name = "endereco_id")
+    private Cliente cliente;
 }
