@@ -1,6 +1,7 @@
 package com.fundatec.banco.controller;
 
 
+import com.fundatec.banco.exception.NotAllowedException;
 import com.fundatec.banco.model.Movimentacao;
 import com.fundatec.banco.model.Conta;
 import com.fundatec.banco.service.CaixaAutomaticoService;
@@ -22,42 +23,57 @@ public class CaixaAutomaticoController {
 
 
     @Autowired
-    public CaixaAutomaticoController(CaixaAutomaticoService service, GerenciamentoContaService contaService) {
+    public CaixaAutomaticoController(@RequestHeader Integer idBanco, @RequestHeader String senha, CaixaAutomaticoService service, GerenciamentoContaService contaService) {
         this.service = service;
         this.contaService = contaService;
     }
 
     @GetMapping("/saldo/{cpf}")
     @ResponseStatus(HttpStatus.FOUND)
-    public BigDecimal consultarSaldo(@PathVariable Integer idConta) {
+    public BigDecimal consultarSaldo(@RequestHeader Integer idCliente, @PathVariable Integer idConta, @RequestHeader String senha) {
+        if(!contaService.verificarCredenciais(idCliente,idConta, senha)) {
+            throw new NotAllowedException("as informações são inválidas");
+        }
         Conta conta = contaService.findById(idConta);
         return service.consultarSaldo(conta);
     }
 
     @GetMapping("/extratos/{cpf}")
     @ResponseStatus(HttpStatus.FOUND)
-    public List<Movimentacao> consultarExtrato(@PathVariable String cpfTitular) {
-        Conta conta = contaService.findByCpf(cpfTitular);
+    public List<Movimentacao> consultarExtrato(@RequestHeader Integer idCliente, @PathVariable Integer idConta, @RequestHeader String senha) {
+        if(!contaService.verificarCredenciais(idCliente,idConta, senha)) {
+            throw new NotAllowedException("as informações são inválidas");
+        }
+        Conta conta = contaService.findById(idConta);
         return service.consultarExtrato(conta);
     }
 
     @PutMapping("/depositar/{idConta}/{valor}")
     @ResponseStatus(HttpStatus.OK)
-    public void depositar(@PathVariable Integer idConta, @PathVariable BigDecimal valor) {
+    public void depositar(@RequestHeader Integer idCliente, @PathVariable Integer idConta, @RequestHeader String senha, @PathVariable BigDecimal valor) {
+        if(!contaService.verificarCredenciais(idCliente,idConta, senha)) {
+            throw new NotAllowedException("as informações são inválidas");
+        }
         Conta conta = contaService.findById(idConta);
         service.depositar(conta, valor);
     }
 
     @PutMapping("/sacar/{idConta}/{valor}")
     @ResponseStatus(HttpStatus.OK)
-    public void sacar(@PathVariable Integer idConta, @PathVariable BigDecimal valor) {
+    public void sacar(@RequestHeader Integer idCliente, @PathVariable Integer idConta, @RequestHeader String senha, @PathVariable BigDecimal valor) {
+        if(!contaService.verificarCredenciais(idCliente,idConta, senha)) {
+            throw new NotAllowedException("as informações são inválidas");
+        }
         Conta conta = contaService.findById(idConta);
         service.sacar(conta, valor);
     }
 
     @PutMapping("/{idConta1}/{idConta2}/{valor}")
     @ResponseStatus(HttpStatus.OK)
-    public void transferir(@PathVariable Integer idConta1, @PathVariable Integer idConta2, @PathVariable BigDecimal valor) {
+    public void transferir(@RequestHeader Integer idCliente, @RequestHeader String senha, @PathVariable Integer idConta1, @PathVariable Integer idConta2, @PathVariable BigDecimal valor) {
+        if(!contaService.verificarCredenciais(idCliente,idConta1, senha)) {
+            throw new NotAllowedException("as informações são inválidas");
+        }
         Conta conta1 = contaService.findById(idConta1);
         Conta conta2 = contaService.findById(idConta2);
         service.transferir(conta1, conta2, valor);

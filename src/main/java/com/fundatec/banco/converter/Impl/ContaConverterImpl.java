@@ -8,7 +8,7 @@ import com.fundatec.banco.model.Conta;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ContaConverterImpl implements ContaConverter<Conta, ContaResponseDto, ContaRequestDto> {
+public class ContaConverterImpl implements ContaConverter <Conta, ContaResponseDto, ContaRequestDto> {
 
     @Override
     public ContaResponseDto convert(Conta conta) {
@@ -29,7 +29,6 @@ public class ContaConverterImpl implements ContaConverter<Conta, ContaResponseDt
     @Override
     public Conta convert(ContaRequestDto conta) {
         return Conta.builder()
-                .tipoConta(conta.getTipoConta())
                 .tipoConta(conta.getTipoConta())
                 .senhaAcesso(conta.getSenhaAcesso())
                 .build();

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -98,5 +99,14 @@ public class GerenciamentoContaService {
         catch(ObjectNotFoundException e){
             throw new ObjectNotFoundException("conta");
         }
+    }
+
+    public boolean verificarCredenciais(Integer idCliente, Integer idConta, String senha) {
+        Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(() -> new ObjectNotFoundException("cliente não encontrado"));
+        Conta conta = repository.findById(idConta).orElseThrow(() -> new ObjectNotFoundException("Conta não encontrada"));
+        if(Objects.equals(cliente.getCpf(), conta.getCpfTitular()) && Objects.equals(conta.getSenhaAcesso(), senha)) {
+            return true;
+        }
+        return false;
     }
 }
