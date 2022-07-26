@@ -23,7 +23,7 @@ public class CaixaAutomaticoController {
 
 
     @Autowired
-    public CaixaAutomaticoController(@RequestHeader Integer idBanco, @RequestHeader String senha, CaixaAutomaticoService service, GerenciamentoContaService contaService) {
+    public CaixaAutomaticoController( CaixaAutomaticoService service, GerenciamentoContaService contaService) {
         this.service = service;
         this.contaService = contaService;
     }
