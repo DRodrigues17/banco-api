@@ -50,13 +50,13 @@ class CaixaAutomaticoServiceTest {
         assertThrows(NotAllowedException.class, () -> automaticoService.consultarSaldo(conta));
     }
 
-    @Test
-    void deveConsultarExtrato() {
-        gerarMovimentacao();
-        conta.setStatus(StatusConta.ATIVA);
-        logger.info(conta.getMovimentacoes().toString());
-        assertEquals(conta.getMovimentacoes(),automaticoService.consultarExtrato(conta));
-    }
+//    @Test
+//    void deveConsultarExtrato() {
+//        gerarMovimentacao();
+//        conta.setStatus(StatusConta.ATIVA);
+//        logger.info(conta.getMovimentacoes().toString());
+//        assertEquals(conta.getMovimentacoes(),automaticoService.consultarExtrato(conta));
+//    }
 
     @Test
     void deveDarErroAoConsultarExtratoPoisContaInativa() {
